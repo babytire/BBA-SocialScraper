@@ -1,17 +1,40 @@
+.LoginPage{
+    display: flex;
+    flex-direction: row;
+}
+
 .loginForm{
     left: 357px;
     top: 233px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 .emailInputBox{
     width: 530px;
     height: 77px;
     margin-bottom: 15px;
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 68px;
+    align-items: center;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.35);
 }
 .passwordInputBox{
     width: 530px;
     height: 77px;
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 68px;
+    align-items: center;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.35);
 }
 .forgotPasswordButton{
     font-family: Arial Black;
