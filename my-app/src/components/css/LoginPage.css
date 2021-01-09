@@ -4,8 +4,8 @@
 }
 
 .loginForm{
-    left: 357px;
-    top: 233px;
+    margin-left: 25%;
+    margin-top: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,4 +62,7 @@
     background: #0094FF;
     border: 1px solid #000000;
     box-sizing: border-box;
+}
+.loginButton:hover{
+    transform: scale(1.05);
 }
