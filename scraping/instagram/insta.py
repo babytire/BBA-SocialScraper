@@ -1,12 +1,12 @@
 from instascrape import *
-import heady
+from heady import headers
 
 test_post = Post('https://www.instagram.com/p/CKFKyULrAWm/')
 test_hashtag = Hashtag('https://www.instagram.com/explore/tags/minecraft/')
 
 
-test_post.scrape(headers=heady.headers)
-test_hashtag.scrape(headers=heady.headers)
+test_post.scrape(headers=headers)
+test_hashtag.scrape(headers=headers)
 recent = test_hashtag.get_recent_posts(5)
 test_post.download(f'post.png')
 print('Username: ' + test_post.username + '\n')

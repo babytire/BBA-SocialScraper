@@ -1,5 +1,5 @@
 from instascrape import *
-import heady
+from heady import headers
 
 posts = []
 posts.append(Post('https://www.instagram.com/p/CKl-PQtH_x_/'))
@@ -10,7 +10,7 @@ posts.append(Post('https://www.instagram.com/p/CKmB6uXpPxq/'))
 
 x = 1
 for post in posts:
-	post.scrape(headers=heady.headers)
+	post.scrape(headers=headers)
 	post.download(f'scraped_post_{x}.jpg')
 	print('Username: ' + post.username + '\n')
 	print('Caption: ' + post.caption + '\n')

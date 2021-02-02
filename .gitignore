@@ -2,3 +2,7 @@
 __pycache__
 Tokens.py
 heady.py
+*.jpg
+*.png
+output.txt
+input.txt

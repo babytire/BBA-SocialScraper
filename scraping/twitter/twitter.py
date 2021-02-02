@@ -1,5 +1,5 @@
 import tweepy
-import Tokens
+from tokens import API_key, API_secret_key, Access_token, Access_token_secret
 
 #Passing in tokens
 auth = tweepy.OAuthHandler(Tokens.API_key,Tokens.API_secret_key)
