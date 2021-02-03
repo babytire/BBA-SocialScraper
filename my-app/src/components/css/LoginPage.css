@@ -2,12 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    align-self: center;
 }
 
 .loginFormContainer{
     display: flex;
     flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .loginForm{
@@ -23,7 +25,7 @@
     font-family: Arial Black;
     font-style: normal;
     font-weight: 900;
-    font-size: 48px;
+    font-size: 36px;
     line-height: 68px;
     align-items: center;
     text-align: center;
@@ -35,7 +37,7 @@
     font-family: Arial Black;
     font-style: normal;
     font-weight: 900;
-    font-size: 48px;
+    font-size: 36px;
     line-height: 68px;
     align-items: center;
     text-align: center;
@@ -74,6 +76,12 @@
 .forgotPasswordButton:hover{
     transform: scale(1.01);
 }
+.contactUsButton:hover{
+    transform: scale(1.01);
+}
+.createButton:hover{
+    transform: scale(1.01);
+}
 .contactUsButton{
     font-family: Arial Black;
     font-style: normal;
@@ -88,7 +96,8 @@
     background: #0094FF;
     border: 1px solid #000000;
     box-sizing: border-box;
-    margin-right: auto;
+    align-self: flex-end;
+    margin-left: 20px;
 }
 .createButton{
     font-family: Arial Black;
@@ -104,7 +113,8 @@
     background: #0094FF;
     border: 1px solid #000000;
     box-sizing: border-box;
-    margin-left: auto;
+    align-self: flex-end;
+    margin-right: 20px;
 }
 
 @media screen and (max-width: 900px){
@@ -129,5 +139,11 @@
     }
     .createButton{
         margin-bottom: 20px;
+        margin-right: 0px;
+        align-self: center;
+    }
+    .contactUsButton{
+        margin-left: 0px;
+        align-self: center;
     }
 }
