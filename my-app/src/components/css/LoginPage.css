@@ -13,20 +13,19 @@
     background-color: #FFFFFF;
     z-index: 1;
     width: 300px;
-    height: 42px;
+    height: 30px;
 }
 .loginPageTitle{
     font-family: Arial Black;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
-    /* line-height: 34px; */
 }
 .loginPageContainer{
     position: relative;
     height: 90vh;
     width: 95vw;
-    border: 3px solid black;
+    border: 2px solid black;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
@@ -184,5 +183,14 @@
         margin-right: auto;
         margin-left: auto;
         margin-bottom: auto;
+    }
+
+    @media screen and (max-width: 380px){
+        .loginPageTitleContainer{
+            width: 220px;
+        }
+        .loginFormContainer{
+            margin-top: 30px;
+        }
     }
 }
