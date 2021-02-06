@@ -40,7 +40,13 @@ export default class LoginPage extends Component {
 
     render() {
         return (
-            <div className="contentContainer">
+            <div className="loginPageContent">
+            <div className="loginPageTitleContainer">
+                <text className="loginPageTitle">
+                    {this.props.title}
+                </text>
+        </div>
+            <div className="loginPageContainer">
                 <div className="contactUsContainer">
                     <button onClick={this.handleContactUs} className="contactUsButton">Contact Us</button>
                 </div>
@@ -55,6 +61,7 @@ export default class LoginPage extends Component {
                 <div className="createContainer">
                     <button onClick={this.handleCreate} className="createButton">Create</button>
                 </div>
+            </div>
             </div>
         )
     }
