@@ -40,8 +40,10 @@ export default class LoginPage extends Component {
 
     render() {
         return (
-            <div className="flexContainer">
-                <button onClick={this.handleContactUs} className="contactUsButton">Contact Us</button>
+            <div className="contentContainer">
+                <div className="contactUsContainer">
+                    <button onClick={this.handleContactUs} className="contactUsButton">Contact Us</button>
+                </div>
                 <div className="loginFormContainer">
                     <form onSubmit={this.handleLogin} className="loginForm">
                         <input type="email" value={this.state.email} required requirederror="Email Address required." validate={this.emailRegex} validateerror="Please provide a valid email address." placeholder="Email" onChange={this.handleEmailChange} className="emailInputBox" />
@@ -50,7 +52,9 @@ export default class LoginPage extends Component {
                         <input type="submit" value="Login" className="loginButton" />
                     </form>
                 </div>
-                <button onClick={this.handleCreate} className="createButton">Create</button>
+                <div className="createContainer">
+                    <button onClick={this.handleCreate} className="createButton">Create</button>
+                </div>
             </div>
         )
     }
