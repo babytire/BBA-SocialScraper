@@ -5,6 +5,7 @@
     border: 3px solid black;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 30px;
     display: flex;
 }
 .contactUsContainer{
@@ -127,12 +128,15 @@
     transform: scale(1.1);
 }
 
-@media screen and (max-width: 800px){
-    .flexContainer{
-        flex-direction: column-reverse;
+@media screen and (max-width: 900px){
+    .contentContainer{
+        flex-direction: column;
+        width: auto;
+        margin-top: 0;
     }
     .loginFormContainer{
         order: 1;
+        margin-bottom: 0;
     }
     .emailInputBox{
         width: 75%;
@@ -147,13 +151,15 @@
     .loginButton{
         margin-bottom: 20px;
     }
-    .createButton{
-        margin-bottom: 20px;
-        margin-right: 0px;
-        align-self: center;
+    .createContainer{
+        order: 2;
+        margin-right: auto;
+        margin-left: auto;
     }
-    .contactUsButton{
-        margin-left: 0px;
-        align-self: center;
+    .contactUsContainer{
+        order: 3;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: auto;
     }
 }
