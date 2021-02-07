@@ -93,6 +93,13 @@
     color: #FFFFFF;
 }
 
+.newSearchButton:hover{
+    transform: scale(1.1);
+}
+.currentSearchesButton:hover{
+    transform: scale(1.1);
+}
+
 @media screen and (max-width: 1225px){
     .homePageContentContainer{
         flex-direction: column-reverse;
