@@ -24,11 +24,19 @@ export default class HomePage extends Component {
     
     render() {
         return (
+            <div className="homePageContent">
+                <div className="homePageTitleContainer">
+                    <text className="homePageTitle">
+                        {this.props.title}
+                    </text>
+                </div>
             <div className="homePageContainer">
+                
                 <SettingsButton></SettingsButton>
                 <div className="previousSearchContainer">
-                    
+                    Test
                 </div>
+                <diiv className="buttonContainer">
                 <div className="newSearchContainer">
                     <button className="newSearchButton" onClick={this.handleNewSearch}>
                         New Search
@@ -39,6 +47,8 @@ export default class HomePage extends Component {
                         Current Searches
                     </button>
                 </div>
+                </diiv>
+            </div>
             </div>
         )
     }

@@ -1,5 +1,8 @@
 .settingsButtonContainer{
-    margin: 20px;
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+    margin: 10px;
     width: 150px;
     height: 50px;
 }
