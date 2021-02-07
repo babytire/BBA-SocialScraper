@@ -34,10 +34,18 @@
     align-items: center;
     justify-content: center;
 }
+.homePageContentContainer{
+    height: 90vh;
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .previousSearchContainer{
     background-color: #0094FF;
     height: 417px;
     width: 502px;
+    margin: 20px;
 }
 .buttonContainer{
     display: flex;
@@ -83,4 +91,26 @@
     align-items: center;
     text-align: center;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 1225px){
+    .homePageContentContainer{
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .buttonContainer{
+        order: 1;
+    }
+    .newSearchButton{
+        width: 75%;
+    }
+    .currentSearchesButton{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 670px){
+    .buttonContainer{
+        margin-top: 75px;
+    }
 }

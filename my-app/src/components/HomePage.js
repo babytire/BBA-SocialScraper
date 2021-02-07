@@ -30,25 +30,28 @@ export default class HomePage extends Component {
                         {this.props.title}
                     </text>
                 </div>
-            <div className="homePageContainer">
-                
-                <SettingsButton></SettingsButton>
-                <div className="previousSearchContainer">
-                    Test
+                <div className="homePageContainer">
+                    
+                    <SettingsButton></SettingsButton>
+                    
+                    <div className="homePageContentContainer">
+                        <div className="previousSearchContainer">
+                            Test
+                        </div>
+                        <div className="buttonContainer">
+                            <div className="newSearchContainer">
+                                <button className="newSearchButton" onClick={this.handleNewSearch}>
+                                    New Search
+                                </button>
+                            </div>
+                            <div className="currentSearchesContainer" onClick={this.handleCurrentSearches}>
+                                <button className="currentSearchesButton">
+                                    Current Searches
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <diiv className="buttonContainer">
-                <div className="newSearchContainer">
-                    <button className="newSearchButton" onClick={this.handleNewSearch}>
-                        New Search
-                    </button>
-                </div>
-                <div className="currentSearchesContainer" onClick={this.handleCurrentSearches}>
-                    <button className="currentSearchesButton">
-                        Current Searches
-                    </button>
-                </div>
-                </diiv>
-            </div>
             </div>
         )
     }
