@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SettingsButton from './SettingsButton'
 import './css/HomePage.css'
 
 export default class HomePage extends Component {
@@ -24,6 +25,10 @@ export default class HomePage extends Component {
     render() {
         return (
             <div className="homePageContainer">
+                <SettingsButton></SettingsButton>
+                <div className="previousSearchContainer">
+                    
+                </div>
                 <div className="newSearchContainer">
                     <button className="newSearchButton" onClick={this.handleNewSearch}>
                         New Search
