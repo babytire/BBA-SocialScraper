@@ -8,13 +8,32 @@ export default class HomePage extends Component {
             title: '',
         };
 
-        // this.handleLogin = this.handleLogin.bind(this);
+        this.handleNewSearch = this.handleNewSearch.bind(this);
+        this.handleCurrentSearches = this.handleCurrentSearches.bind(this);
+    }
+
+    handleNewSearch(){
+        console.log("newSearch");
+        return;
+    }
+
+    handleCurrentSearches(){
+        return;
     }
     
     render() {
         return (
             <div className="homePageContainer">
-                
+                <div className="newSearchContainer">
+                    <button className="newSearchButton" onClick={this.handleNewSearch}>
+                        New Search
+                    </button>
+                </div>
+                <div className="currentSearchesContainer" onClick={this.handleCurrentSearches}>
+                    <button className="currentSearchesButton">
+                        Current Searches
+                    </button>
+                </div>
             </div>
         )
     }
