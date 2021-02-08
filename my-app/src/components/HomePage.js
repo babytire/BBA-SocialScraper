@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SettingsButton from './SettingsButton'
 import './css/HomePage.css'
 
 export default class HomePage extends Component {
@@ -8,13 +9,49 @@ export default class HomePage extends Component {
             title: '',
         };
 
-        // this.handleLogin = this.handleLogin.bind(this);
+        this.handleNewSearch = this.handleNewSearch.bind(this);
+        this.handleCurrentSearches = this.handleCurrentSearches.bind(this);
+    }
+
+    handleNewSearch(){
+        console.log("newSearch");
+        return;
+    }
+
+    handleCurrentSearches(){
+        return;
     }
     
     render() {
         return (
-            <div className="homePageContainer">
-                
+            <div className="homePageContent">
+                <div className="homePageTitleContainer">
+                    <text className="homePageTitle">
+                        {this.props.title}
+                    </text>
+                </div>
+                <div className="homePageContainer">
+                    
+                    <SettingsButton></SettingsButton>
+                    
+                    <div className="homePageContentContainer">
+                        <div className="previousSearchContainer">
+                            Test
+                        </div>
+                        <div className="buttonContainer">
+                            <div className="newSearchContainer">
+                                <button className="newSearchButton" onClick={this.handleNewSearch}>
+                                    New Search
+                                </button>
+                            </div>
+                            <div className="currentSearchesContainer" onClick={this.handleCurrentSearches}>
+                                <button className="currentSearchesButton">
+                                    Current Searches
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

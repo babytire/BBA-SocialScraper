@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       
       
-      {/* <HomePage title={"Home Page"}></HomePage> */}
-      <LoginPage title={"Scraper Log In"}></LoginPage>
+      <HomePage title={"Home Page"}></HomePage>
+      {/* <LoginPage title={"Scraper Log In"}></LoginPage> */}
       
       
       

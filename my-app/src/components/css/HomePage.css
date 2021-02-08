@@ -1,0 +1,126 @@
+.homePageContent{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.homePageTitleContainer{
+    position: absolute;
+    top: 3vh;
+    left: 15vw;
+    box-sizing: content-box;
+    background-color: #FFFFFF;
+    z-index: 1;
+    width: 300px;
+    height: 30px;
+}
+.homePageTitle{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+}
+.homePageContainer{
+    position: relative;
+    height: 90vh;
+    width: 95vw;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.homePageContentContainer{
+    height: 90vh;
+    width: 70vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.previousSearchContainer{
+    background-color: #0094FF;
+    height: 417px;
+    width: 502px;
+    margin: 20px;
+}
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+}
+.newSearchContainer{
+    height: 145px;
+    width: 388px;
+    margin: 20px;
+}
+.newSearchButton{
+    height: inherit;
+    width: inherit;
+    background: #0094FF;
+    border-radius: 20px;
+    border: none;
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 25px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.currentSearchesContainer{
+    height: 145px;
+    width: 388px;
+    margin: 20px;
+}
+.currentSearchesButton{
+    height: inherit;
+    width: inherit;
+    background: #0094FF;
+    border-radius: 20px;
+    border: none;
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 25px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.newSearchButton:hover{
+    transform: scale(1.1);
+}
+.currentSearchesButton:hover{
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 1390px){
+    .homePageContentContainer{
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .buttonContainer{
+        order: 1;
+    }
+}
+
+@media screen and (max-width: 770px){
+    .buttonContainer{
+        margin-top: 75px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .newSearchButton{
+        width: 65%;
+    }
+    .currentSearchesButton{
+        width: 65%;
+    }
+}

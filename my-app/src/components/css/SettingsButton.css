@@ -1,0 +1,47 @@
+.settingsButtonContainer{
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+    margin: 10px;
+    width: 150px;
+    height: 50px;
+}
+
+.settingsButton{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    width: inherit;
+    height: inherit;
+    background: none;
+    border: none;
+    align-items: center;
+    text-align: center;
+}
+.settingsButtonText{
+    padding-right: 15px;
+}
+
+.settingsIcon{
+    position: relative;
+    top: 25%;
+}
+
+.settingsButtonContainer:hover .settingsIcon{
+    animation: settingsIconSpin infinite 10s linear;
+}
+
+.settingsButtonContainer:hover .settingsButton{
+    transform: scale(1.1);
+}
+
+@keyframes settingsIconSpin {
+    
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
