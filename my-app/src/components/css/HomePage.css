@@ -100,7 +100,7 @@
     transform: scale(1.1);
 }
 
-@media screen and (max-width: 1225px){
+@media screen and (max-width: 1390px){
     .homePageContentContainer{
         flex-direction: column-reverse;
         justify-content: center;
@@ -108,16 +108,19 @@
     .buttonContainer{
         order: 1;
     }
-    .newSearchButton{
-        width: 75%;
-    }
-    .currentSearchesButton{
-        width: 75%;
+}
+
+@media screen and (max-width: 770px){
+    .buttonContainer{
+        margin-top: 75px;
     }
 }
 
-@media screen and (max-width: 670px){
-    .buttonContainer{
-        margin-top: 75px;
+@media screen and (max-width: 450px){
+    .newSearchButton{
+        width: 65%;
+    }
+    .currentSearchesButton{
+        width: 65%;
     }
 }
