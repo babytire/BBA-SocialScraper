@@ -6,3 +6,5 @@ heady.py
 *.png
 output.txt
 input.txt
+chromedriver
+URLFrontier.txt

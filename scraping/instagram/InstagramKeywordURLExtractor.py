@@ -1,6 +1,7 @@
 from time import sleep
 from selenium import webdriver
 import re
+from heady import insta_username,insta_passsword
 
 pixels = 1080   #number of pixels to scroll down
 posts = 200     #number of posts to scrape
@@ -9,7 +10,7 @@ listOfLinks = [] #List of links being scraped
 regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')  #regex for matching only links to posts
 
 #Load Chromedriver
-browser = webdriver.Chrome(executable_path = 'C:/path/to/chromedriver.exe') #Replace with path to chromedriver.exe
+browser = webdriver.Chrome(executable_path = '../chromedriver') #Replace with path to chromedriver.exe
 browser.implicitly_wait(5)
 
 #Load and login to Instagram
@@ -20,8 +21,8 @@ sleep(2)
 username_input = browser.find_element_by_css_selector("input[name='username']")
 password_input = browser.find_element_by_css_selector("input[name='password']")
 
-username_input.send_keys("Username") #Replace 'Username' with Instagram username
-password_input.send_keys("Password") #Replace 'Password' with Instagram password
+username_input.send_keys(insta_username) #Replace 'Username' with Instagram username
+password_input.send_keys(insta_passsword) #Replace 'Password' with Instagram password
 
 login_button = browser.find_element_by_xpath("//button[@type='submit']")
 login_button.click()
