@@ -1,25 +1,40 @@
 from instascrape import *
-from heady import headers
-import threading, queue
+from heady import headers, data
+from threading import Thread
+from queue import Queue
 
-url_frontier = open("URLFrontier.txt","r")
 
-url_q = queue.Queue(url_frontier.readlines())
-
-def worker():
+# Defining what a "worker" will do
+def worker(url_q):
     while True:
+        #print("in worker")
         post = Post(url_q.get())
         post.scrape(headers=headers)
-        print(post.username)
+        print(post.username + '\n')
+        print(post.caption + '\n')
+        print(str(post.likes) + '\n')
+        print(str(post.timestamp) + '\n')
         url_q.task_done()
 
-threading.Thread(target=worker, daemon=True).start()
 
-for post in range(209):
-    url_q.put(post)
+url_q = Queue(maxsize=0)
+
+# Creating workers. In this case, creating three
+for i in range(3):
+    thread = Thread(target=worker, args=(url_q,))
+    thread.setDaemon(True)
+    thread.start()
+
+# Reading in urls from frontier
+url_frontier = open("URLFrontier.txt","r")
+url = url_frontier.readline()
+while url:
+    url_q.put(url)
+    url = url_frontier.readline()
+url_frontier.close()
+
 
 url_q.join()
-print("finished")
 
 
 
