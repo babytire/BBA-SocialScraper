@@ -1,7 +1,7 @@
 from time import sleep
 from selenium import webdriver
 import re
-
+from heady import insta_username,insta_passsword
 
 # InstagramURLExtractor - Scrapes links to instagram posts of the internet and compiles them into a text document. 
 
@@ -56,8 +56,8 @@ def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2
     username_input = browser.find_element_by_css_selector("input[name='username']")
     password_input = browser.find_element_by_css_selector("input[name='password']")
 
-    username_input.send_keys("babytire3") #Replace 'Username' with Instagram username
-    password_input.send_keys("T25EJZ5auM") #Replace 'Password' with Instagram password
+    username_input.send_keys("Username") #Replace 'Username' with Instagram username
+    password_input.send_keys("Password") #Replace 'Password' with Instagram password
 
     login_button = browser.find_element_by_xpath("//button[@type='submit']")
     login_button.click()
