@@ -45,7 +45,7 @@ export default class LoginPage extends Component {
                 <text className="loginPageTitle">
                     {this.props.title}
                 </text>
-        </div>
+            </div>
             <div className="loginPageContainer">
                 <div className="contactUsContainer">
                     <button onClick={this.handleContactUs} className="contactUsButton">Contact Us</button>
