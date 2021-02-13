@@ -1,5 +1,6 @@
 name: learn-github-actions
 on: [push]
+# Test push
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
