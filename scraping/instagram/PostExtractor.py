@@ -1,5 +1,5 @@
 from instascrape import *
-from heady import headers, data
+from heady import headers
 from threading import Thread
 from queue import Queue
 
@@ -10,8 +10,8 @@ def worker(url_q):
         #print("in worker")
         post = Post(url_q.get())
         post.scrape(headers=headers)
-        print(post.username + '\n')
-        print(post.caption + '\n')
+        print(str(post.username) + '\n')
+        print(str(post.caption) + '\n')
         print(str(post.likes) + '\n')
         print(str(post.timestamp) + '\n')
         url_q.task_done()

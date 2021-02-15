@@ -1,10 +1,10 @@
 from time import sleep
 from selenium import webdriver
 import re
-from heady import insta_username,insta_passsword
+from heady import insta_username,insta_password
 
 pixels = 1080   #number of pixels to scroll down
-posts = 200     #number of posts to scrape
+posts = 25      #number of posts to scrape
 page = 'https://www.instagram.com/explore/tags/minecraft/' # link to explre page with search results
 listOfLinks = [] #List of links being scraped
 regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')  #regex for matching only links to posts
@@ -22,7 +22,7 @@ username_input = browser.find_element_by_css_selector("input[name='username']")
 password_input = browser.find_element_by_css_selector("input[name='password']")
 
 username_input.send_keys(insta_username) #Replace 'Username' with Instagram username
-password_input.send_keys(insta_passsword) #Replace 'Password' with Instagram password
+password_input.send_keys(insta_password) #Replace 'Password' with Instagram password
 
 login_button = browser.find_element_by_xpath("//button[@type='submit']")
 login_button.click()
