@@ -13,6 +13,7 @@ from heady import insta_username,insta_passsword
 # category - what type of search your doing 'hashtag', 'person', or 'location'
 # category2 - If searching a person, what type of posts you are scraping 'posts', 'reels', 'igtv', or 'tagged'
 
+
 def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2 = None):
 
     pixels = 1080   #number of pixels to scroll down
@@ -43,6 +44,7 @@ def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2
     elif (category == 'location'):
         page = search
         regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
+
 
     #Load Chromedriver
     browser = webdriver.Chrome(executable_path = 'C:/Users/ryanh/Desktop/School/COS 397/Python/chromedriver_win32/chromedriver.exe') #Replace with path to chromedriver.exe
