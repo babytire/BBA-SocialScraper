@@ -1,9 +1,17 @@
 from time import sleep
 from selenium import webdriver
 import re
-from heady import insta_username,insta_passsword
+from heady import insta_username,insta_password
 
+<<<<<<< HEAD
+pixels = 1080   #number of pixels to scroll down
+posts = 25      #number of posts to scrape
+page = 'https://www.instagram.com/explore/tags/minecraft/' # link to explre page with search results
+listOfLinks = [] #List of links being scraped
+regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')  #regex for matching only links to posts
+=======
 # InstagramURLExtractor - Scrapes links to instagram posts of the internet and compiles them into a text document. 
+>>>>>>> 91d96fcf1e45ea21732245a718754aee4b91c683
 
 # search - your search term weather its a hashtag, profile, or location
 #        - if scraping a hashtag, dont include the #
@@ -23,11 +31,16 @@ def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2
         page = 'https://www.instagram.com/explore/tags/' + search + '/'
         regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
 
+<<<<<<< HEAD
+username_input.send_keys(insta_username) #Replace 'Username' with Instagram username
+password_input.send_keys(insta_password) #Replace 'Password' with Instagram password
+=======
     elif (category == 'person'):
         
         if (category2 == 'reels'):
             page = 'https://www.instagram.com/' + search + '/reels/'
             regex = re.compile('(https:\/\/www\.instagram\.com\/reel\/)(\w|_){11}(\/)')
+>>>>>>> 91d96fcf1e45ea21732245a718754aee4b91c683
 
         elif (category2 == 'igtv'):
             page = 'https://www.instagram.com/' + search + '/channel/'

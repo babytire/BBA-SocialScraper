@@ -1,20 +1,22 @@
 from instascrape import *
 from heady import headers
 
-test_post = Post('https://www.instagram.com/p/CKFKyULrAWm/')
-test_hashtag = Hashtag('https://www.instagram.com/explore/tags/minecraft/')
+test_post_1 = Post('https://www.instagram.com/p/CLHNJs1r3Mo/')
+test_post_2 = Post('https://www.instagram.com/p/CLG9IuWAayv/')
 
+def scrape_it_up(post):
+    post.scrape(headers=headers)
+    if post.is_video():
+        post.download(f'post.mp4')
+    else:
+        post.download(f'post.png')
 
-test_post.scrape(headers=headers)
-test_hashtag.scrape(headers=headers)
-recent = test_hashtag.get_recent_posts(5)
-test_post.download(f'post.png')
-print('Username: ' + test_post.username + '\n')
-print('Caption: ' + test_post.caption + '\n')
-print('Likes: ' + str(test_post.likes) + '\n')
-print('Timestamp: ' + str(test_post.timestamp) + '\n')
-print('Location: ' + str(test_post.location) + '\n')
-print('\n')
+    print('Username: ' + post.username + '\n')
+    print('Caption: ' + post.caption + '\n')
+    print('Likes: ' + str(post.likes) + '\n')
+    print('Timestamp: ' + str(post.timestamp) + '\n')
+    print('Location: ' + str(post.location) + '\n')
+    print('\n')
 
-
-print(len(recent))
+scrape_it_up(test_post_1)
+scrape_it_up(test_post_2)
