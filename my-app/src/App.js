@@ -2,15 +2,21 @@
 import './App.css';
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage'
+import SearchCriteriaPage from './components/SearchCriteriaPage.js'
 
 function App() {
   return (
     <div className="App">
+      <div className="pageContent">
+        <div className="pageTitleContainer">
+            <text className="pageTitle">
+            </text>
+        </div>
       
-      
-      <HomePage title={"Home Page"}></HomePage>
+      <SearchCriteriaPage></SearchCriteriaPage>
+      {/* <HomePage title={"Home Page"}></HomePage> */}
       {/* <LoginPage title={"Scraper Log In"}></LoginPage> */}
-      
+    </div>
       
       
       
