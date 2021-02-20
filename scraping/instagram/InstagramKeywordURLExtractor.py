@@ -1,7 +1,7 @@
 from time import sleep
 from selenium import webdriver
 import re
-from heady import insta_username,insta_password
+from heady import insta_username, insta_password, path_to_driver
 
 # InstagramURLExtractor - Scrapes links to instagram posts of the internet and compiles them into a text document. 
 
@@ -14,7 +14,7 @@ from heady import insta_username,insta_password
 # category2 - If searching a person, what type of posts you are scraping 'posts', 'reels', 'igtv', or 'tagged'
 
 
-def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2 = None):
+def url_extractor(search, posts = 100, category = None, category2 = None):
 
     pixels = 1080   #number of pixels to scroll down
     listOfLinks = [] #List of links being scraped
@@ -47,7 +47,7 @@ def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2
 
 
     #Load Chromedriver
-    browser = webdriver.Chrome(executable_path = 'C:/Users/ryanh/Desktop/School/COS 397/Python/chromedriver_win32/chromedriver.exe') #Replace with path to chromedriver.exe
+    browser = webdriver.Chrome(executable_path = path_to_driver) #Replace with path to chromedriver.exe
     browser.implicitly_wait(5)
 
     #Load and login to Instagram
@@ -58,8 +58,8 @@ def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2
     username_input = browser.find_element_by_css_selector("input[name='username']")
     password_input = browser.find_element_by_css_selector("input[name='password']")
 
-    username_input.send_keys("Username") #Replace 'Username' with Instagram username
-    password_input.send_keys("Password") #Replace 'Password' with Instagram password
+    username_input.send_keys(insta_username) #Replace 'Username' with Instagram username
+    password_input.send_keys(insta_password) #Replace 'Password' with Instagram password
 
     login_button = browser.find_element_by_xpath("//button[@type='submit']")
     login_button.click()
@@ -100,10 +100,13 @@ def InstagramkeywordURLExtractor(search, posts = 100, category = None, category2
             sleep(0.1)
 
     #Write scraped post links to URLFrontier text document
+    open('URLFrontier.txt','w').close()
     f = open("URLFrontier.txt", "w", encoding= 'utf-8')
+    
 
     for x in listOfLinks:   
         f.write(x + "\n")
     f.close()
 
     browser.close()
+    return 

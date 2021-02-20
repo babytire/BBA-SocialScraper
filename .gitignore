@@ -8,3 +8,6 @@ output.txt
 input.txt
 chromedriver
 URLFrontier.txt
+scraped_posts/media
+*.csv
+*.mp4
