@@ -65,94 +65,92 @@ export default class SearchCriteriaPage extends Component {
                             </text>
                         </div>
                         <div className="searchCriteriaFormContainer">
-                            <div className="searchCriteraForm">
-                                <div className="searchByContainer">
-                                    <text className="searchByLabel">
-                                        Search By:
-                                    </text>
-                                    <button className="hashTagsButton">
-                                        HashTags
-                                    </button>
-                                    <button className="locationButton">
-                                        Location
-                                    </button>
-                                    <button className="phraseButton">
-                                        Phrase
-                                    </button>
+                            <div className="searchByContainer">
+                                <text className="searchByLabel">
+                                    Search By:
+                                </text>
+                                <button className="hashTagsButton">
+                                    HashTags
+                                </button>
+                                <button className="locationButton">
+                                    Location
+                                </button>
+                                <button className="phraseButton">
+                                    Phrase
+                                </button>
+                            </div>
+                            <div className="searchCriteriaContainer">
+                                <div className="hashTagCriteriaContainer">
+                                    <div className="hashTagLabelContainer">
+                                        <text className="hashTagLabel">
+                                            HashTag(s):
+                                        </text>
+                                    </div>
+                                    <div className="hashTagExampleContainer">
+                                        <text className="hashTagExample">
+                                            Example: #dog#cat#blackbear
+                                        </text>
+                                    </div>
+                                    <input type="search" className="hashTagCriteria" value={this.state.hashTags} onChange={this.handleHashTagsInput} placeholder="#Research">
+                                    </input>
                                 </div>
-                                <div className="searchCriteriaContainer">
-                                    <div className="hashTagCriteriaContainer">
-                                        <div className="hashTagLabelContainer">
-                                            <text className="hashTagLabel">
-                                                HashTag(s):
-                                            </text>
-                                        </div>
-                                        <div className="hashTagExampleContainer">
-                                            <text className="hashTagExample">
-                                                Example: #dog#cat#blackbear
-                                            </text>
-                                        </div>
-                                        <input type="search" className="hashTagCriteria" value={this.state.hashTags} onChange={this.handleHashTagsInput} placeholder="#Research">
-                                        </input>
+                                <div className="locationCriteriaContainer">
+                                    <div className="locationLabelContainer">
+                                        <text className="locationLabel">
+                                            Location(s):
+                                        </text>
                                     </div>
-                                    <div className="locationCriteriaContainer">
-                                        <div className="locationLabelContainer">
-                                            <text className="locationLabel">
-                                                Location(s):
-                                            </text>
-                                        </div>
-                                        <div className="locationExampleContainer">
-                                            <text className="locationExample">
-                                                Example: #newyork#UnitedStates#bangor,ME
-                                            </text>
-                                        </div>
-                                        <input type="search" className="locationCriteria" value={this.state.locations} onChange={this.handleLocationsInput} placeholder="#Location">
-                                        </input>
+                                    <div className="locationExampleContainer">
+                                        <text className="locationExample">
+                                            Example: #newyork#UnitedStates#bangor,ME
+                                        </text>
                                     </div>
-                                    <div className="phraseCriteriaContainer">
-                                        <div className="phraseLabelContainer">
-                                            <text className="phraseLabel">
-                                                Phrase(s):
-                                            </text>
-                                        </div>
-                                        <div className="phraseExampleContainer">
-                                            <text className="phraseExample">
-                                                Example: #working late#I love blackbears
-                                            </text>
-                                        </div>
-                                        <input type="search" className="phraseCriteria" value={this.state.phrases} onChange={this.handlePhrasesInput} placeholder="#Phrase">
-                                        </input>
-                                    </div>
+                                    <input type="search" className="locationCriteria" value={this.state.locations} onChange={this.handleLocationsInput} placeholder="#Location">
+                                    </input>
                                 </div>
-                                <div className="dateSelectionContainer">
-                                    <div className="startDateContainer">
-                                        <div className="startDateLabelContainer">
-                                            <text className="startDateLabel">
-                                                Start Date:
-                                            </text>
-                                        </div>
-                                        <div className="startDateExampleContainer">
-                                            <text className="startDateExample">
-                                                Example: 01/01/2020
-                                            </text>
-                                        </div>
-                                        <input type="date" className="startDateInput" value={this.state.startDate} onChange={this.handleStartDateInput}>
-                                        </input>
+                                <div className="phraseCriteriaContainer">
+                                    <div className="phraseLabelContainer">
+                                        <text className="phraseLabel">
+                                            Phrase(s):
+                                        </text>
                                     </div>
-                                    <div className="endDateContainer">
-                                        <div className="endDateLabelContainer">
-                                            <text className="endDateLabel">
-                                                End Date:
-                                            </text>
-                                        </div>
-                                        <div className="endDateExampleContainer">
-                                            <text className="endDateExample">
-                                                Example: 01/01/2020
-                                            </text>
-                                        </div>
-                                        <input type="date" className="endDateInput" value={this.state.endDate} onChange={this.handleEndDateInput}>
-                                        </input>
+                                    <div className="phraseExampleContainer">
+                                        <text className="phraseExample">
+                                            Example: #working late#I love blackbears
+                                        </text>
                                     </div>
+                                    <input type="search" className="phraseCriteria" value={this.state.phrases} onChange={this.handlePhrasesInput} placeholder="#Phrase">
+                                    </input>
+                                </div>
+                            </div>
+                            <div className="dateSelectionContainer">
+                                <div className="startDateContainer">
+                                    <div className="startDateLabelContainer">
+                                        <text className="startDateLabel">
+                                            Start Date:
+                                        </text>
+                                    </div>
+                                    <div className="startDateExampleContainer">
+                                        <text className="startDateExample">
+                                            Example: 01/01/2020
+                                        </text>
+                                    </div>
+                                    <input type="date" className="startDateInput" value={this.state.startDate} onChange={this.handleStartDateInput}>
+                                    </input>
+                                </div>
+                                <div className="endDateContainer">
+                                    <div className="endDateLabelContainer">
+                                        <text className="endDateLabel">
+                                            End Date:
+                                        </text>
+                                    </div>
+                                    <div className="endDateExampleContainer">
+                                        <text className="endDateExample">
+                                            Example: 01/01/2020
+                                        </text>
+                                    </div>
+                                    <input type="date" className="endDateInput" value={this.state.endDate} onChange={this.handleEndDateInput}>
+                                    </input>
                                 </div>
                             </div>
                         </div>

@@ -64,8 +64,8 @@
     margin-right: 30px;
 }
 .searchCriteriaFormContentContainer{
-    width: 1176px;
-    height: 420px;
+    width: 90vw;
+    height: 60vh;
 }
 .searchCriteriaFormLabelContainer{
     position: relative;
@@ -92,18 +92,34 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    display: flex;
 }
 .searchByContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    height: 35vh;
+}
+.searchByLabel{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
 }
 .searchByContainer button{
     width: 150px;
     height: 50px;
+    background: #0094FF;
+    border-radius: 20px;
+    border: none;
+    margin: auto;
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    color: #FFFFFF;
 }
