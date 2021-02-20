@@ -1,0 +1,43 @@
+.searchCriteriaPageContainer{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.searchPlatformSelectionTitleContainer{
+    position: absolute;
+    top: 1vh;
+    left: 15vw;
+    box-sizing: content-box;
+    background-color: #FFFFFF;
+    z-index: 1;
+    width: 360px;
+    height: 30px;
+}
+.searchPlatformSelectionTitle{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+}
+.searchCriteriaPlatformSelectionContainer{
+    position: relative;
+    height: 90vh;
+    width: 95vw;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.platformSearchContentContainer{
+    display: flex;
+    width: 50vw;
+    justify-content: space-between;
+}
