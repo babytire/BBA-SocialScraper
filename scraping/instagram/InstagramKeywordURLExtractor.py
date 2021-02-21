@@ -3,18 +3,23 @@ from selenium import webdriver
 import re
 from heady import insta_username, insta_password, path_to_driver
 
-# InstagramURLExtractor - Scrapes links to instagram posts of the internet and compiles them into a text document. 
-
-# search - your search term weather its a hashtag, profile, or location
-#        - if scraping a hashtag, dont include the #
-#        - if scraping a location, this must be the link to the location explore page on instagram 
-#           (example: www.instagram.com/explore/locations/498870164/new-delhi/)
-# posts - number of posts to be scraped
-# category - what type of search your doing 'hashtag', 'person', or 'location'
-# category2 - If searching a person, what type of posts you are scraping 'posts', 'reels', 'igtv', or 'tagged'
 
 
-def url_extractor(search, posts = 100, category = None, category2 = None):
+
+def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
+    """ InstagramURLExtractor - 
+    
+        Scrapes links to instagram posts of the internet and compiles them into a text document. 
+    Arguments:
+    - search - your search term weather its a hashtag, profile, or location
+            if scraping a hashtag, dont include the #
+            if scraping a location, this must be the link to the location explore page on instagram 
+            (example: www.instagram.com/explore/locations/498870164/new-delhi/)
+    - posts - number of posts to be scraped
+    - category - what type of search your doing 'hashtag', 'person', or 'location'
+    - category2 - If searching a person, what type of posts you are scraping 'posts', 'reels', 'igtv', or 'tagged'
+    
+    """
 
     pixels = 1080   #number of pixels to scroll down
     listOfLinks = [] #List of links being scraped
@@ -109,4 +114,3 @@ def url_extractor(search, posts = 100, category = None, category2 = None):
     f.close()
 
     browser.close()
-    return 

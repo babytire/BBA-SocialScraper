@@ -7,38 +7,16 @@ import threading
 import csv
 import os
 
-def InstagramPostExtractor():
-    
-
-# Setting up directories for scraped data
-directories = './scraped_posts/media/'
-os.makedirs(directories,exist_ok=True)
-# Creating the CSV file to be written to
-csv_file = open('./scraped_posts/scrape.csv', 'x')
-# Setting fields for csv format
-fields = ['Post ID',
-        'Timestamp',
-        'Full Name',
-        'Username',
-        'Caption',
-        'Likes',
-        'Location']
-# Object to write to csv file
-writer = csv.DictWriter(csv_file,dialect='excel',fieldnames=fields)
-writer.writeheader()
-# Lock for threads writing to file, this ensures only one writing at a time
-global_lock = threading.Lock()
-# Used for serializing posts
-counter = [0]
 
 # Defining what a thread will do when created
 def scrape_post(url_q,counter=[0]):
-    """ post scraping worker function 
+    """ Post scraping worker function 
 
     Arguments:
     - url_q - reference to queue holding instagram post links
     - counter - (list<int>) keeping track of number of posts scraped 
         to generate ids
+
     """
     while True:
         post = Post(url_q.get())
@@ -82,25 +60,42 @@ def scrape_post(url_q,counter=[0]):
         # Let queue know task is done
         url_q.task_done()
 
+# Setting up directories for scraped data
+directories = './scraped_posts/media/'
+os.makedirs(directories,exist_ok=True)
+# Creating the CSV file to be written to
+csv_file = open('./scraped_posts/scrape.csv', 'x')
+# Setting fields for csv format
+fields = ['Post ID',
+    'Timestamp',
+    'Full Name',
+    'Username',
+    'Caption',
+    'Likes',
+    'Location']
+# Object to write to csv file
+writer = csv.DictWriter(csv_file,dialect='excel',fieldnames=fields)
+writer.writeheader()
+# Lock for threads writing to file, this ensures only one writing at a time
+global_lock = threading.Lock()
+# Used for serializing posts
+counter = [0]
 # Threadsafe queue for holding in instagram links
 url_q = Queue(maxsize=0)
 
 # Creating threads. In this case, creating three
-for i in range(3):
+for i in range(5):
     thread = threading.Thread(target=scrape_post, args=(url_q,))
     thread.setDaemon(True)
     thread.start()
 
-# Reading in urls from frontier
-url_frontier = open("URLFrontier.txt","r")
-url = url_frontier.readline()
-while url:
-    url_q.put(url)
+def read_to_queue():
+    # Reading in urls from frontier
+    url_frontier = open("URLFrontier.txt","r")
     url = url_frontier.readline()
-url_frontier.close()
+    while url:
+        url_q.put(url)
+        url = url_frontier.readline()
+    url_frontier.close()
 
-url_q.join()
-
-
-
-
+    url_q.join()
