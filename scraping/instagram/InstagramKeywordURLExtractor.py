@@ -14,7 +14,7 @@ from heady import insta_username, insta_password, path_to_driver
 # category2 - If searching a person, what type of posts you are scraping 'posts', 'reels', 'igtv', or 'tagged'
 
 
-def url_extractor(search, posts = 100, category = None, category2 = None):
+def url_extractor(search, posts = 100, category = "hashtag", category2 = None):
 
     pixels = 1080   #number of pixels to scroll down
     listOfLinks = [] #List of links being scraped
