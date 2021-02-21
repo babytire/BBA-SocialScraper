@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SettingsButton from './SettingsButton';
+import SearchCriteriaInput from './SearchCriteriaInput';
 import './css/SearchCriteriaPage.css'
 
 export default class SearchCriteriaPage extends Component {
@@ -80,35 +81,10 @@ export default class SearchCriteriaPage extends Component {
                                 </button>
                             </div>
                             <div className="searchCriteriaContainer">
-                                <div className="hashTagCriteriaContainer">
-                                    <div className="hashTagLabelContainer">
-                                        <text className="hashTagLabel">
-                                            HashTag(s):
-                                        </text>
-                                    </div>
-                                    <div className="hashTagExampleContainer">
-                                        <text className="hashTagExample">
-                                            Example: #dog#cat#blackbear
-                                        </text>
-                                    </div>
-                                    <input type="search" className="hashTagCriteria" value={this.state.hashTags} onChange={this.handleHashTagsInput} placeholder="#Research">
-                                    </input>
-                                </div>
-                                <div className="locationCriteriaContainer">
-                                    <div className="locationLabelContainer">
-                                        <text className="locationLabel">
-                                            Location(s):
-                                        </text>
-                                    </div>
-                                    <div className="locationExampleContainer">
-                                        <text className="locationExample">
-                                            Example: #newyork#UnitedStates#bangor,ME
-                                        </text>
-                                    </div>
-                                    <input type="search" className="locationCriteria" value={this.state.locations} onChange={this.handleLocationsInput} placeholder="#Location">
-                                    </input>
-                                </div>
-                                <div className="phraseCriteriaContainer">
+                                <SearchCriteriaInput searchCriteriaLabel="HashTag(s):" searchCriteriaExample="Example: #dog#cat#blackbear" searchCriteriaPlaceHolder="#HashTag"></SearchCriteriaInput>
+                                <SearchCriteriaInput searchCriteriaLabel="Location(s):" searchCriteriaExample="Example: #newyork#UnitedStates#bangor,ME" searchCriteriaPlaceHolder="#Location"></SearchCriteriaInput>
+                                <SearchCriteriaInput searchCriteriaLabel="Phrase(s):" searchCriteriaExample="Example: #working late#I love blackbears" searchCriteriaPlaceHolder="#Phrase"></SearchCriteriaInput>
+                                {/* <div className="phraseCriteriaContainer">
                                     <div className="phraseLabelContainer">
                                         <text className="phraseLabel">
                                             Phrase(s):
@@ -121,7 +97,7 @@ export default class SearchCriteriaPage extends Component {
                                     </div>
                                     <input type="search" className="phraseCriteria" value={this.state.phrases} onChange={this.handlePhrasesInput} placeholder="#Phrase">
                                     </input>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="dateSelectionContainer">
                                 <div className="startDateContainer">

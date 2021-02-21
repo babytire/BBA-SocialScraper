@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import './css/SearchCriteriaInput.css'
 
 export default class SearchCriteriaInput extends Component {
-    constructor(){
+    constructor(props){
         super(props);
-        this.state{
+        this.state={
             searchCriteria: ''
         }
 
@@ -19,7 +19,7 @@ export default class SearchCriteriaInput extends Component {
             <div className="searchCriteriaInputContainer">
                 <div className="searchCriteriaLabelContainer">
                     <text className="searchCriteriaLabel">
-                        {this.props.label}
+                        {this.props.searchCriteriaLabel}
                     </text>
                 </div>
                 <div className="searchCriteriaExampleContainer">
