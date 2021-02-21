@@ -1,0 +1,17 @@
+.searchCriteriaInputContainer{
+    display: grid;
+    grid-row-gap: 5px;
+}
+.searchCriteriaLabelContainer{
+    grid-column: 1;
+    grid-row: 2;
+}
+.searchCriteriaExampleContainer{
+    grid-column: 2;
+    grid-row: 1;
+}
+.searchCriteria{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row: 2;
+}
