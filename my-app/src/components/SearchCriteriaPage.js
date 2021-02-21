@@ -19,14 +19,14 @@ export default class SearchCriteriaPage extends Component {
         this.handlePhrasesInput = this.handlePhrasesInput.bind(this);
     }
 
-    handleHashTagsInput(event){
-        this.setState({hashTags: event.target.value})
+    handleHashTagsInput(newHashTags){
+        this.setState({hashTags: newHashTags});
     }
-    handleLocationsInput(event){
-        this.setState({locations: event.target.value})
+    handleLocationsInput(newLocations){
+        this.setState({locations: newLocations});
     }
-    handlePhrasesInput(event){
-        this.setState({phrases: event.target.value})
+    handlePhrasesInput(newPhrases){
+        this.setState({phrases: newPhrases});
     }
     render() {
         return (
@@ -81,9 +81,27 @@ export default class SearchCriteriaPage extends Component {
                                 </button>
                             </div>
                             <div className="searchCriteriaContainer">
-                                <SearchCriteriaInput searchCriteriaLabel="HashTag(s):" searchCriteriaExample="Example: #dog#cat#blackbear" searchCriteriaPlaceHolder="#HashTag"></SearchCriteriaInput>
-                                <SearchCriteriaInput searchCriteriaLabel="Location(s):" searchCriteriaExample="Example: #newyork#UnitedStates#bangor,ME" searchCriteriaPlaceHolder="#Location"></SearchCriteriaInput>
-                                <SearchCriteriaInput searchCriteriaLabel="Phrase(s):" searchCriteriaExample="Example: #working late#I love blackbears" searchCriteriaPlaceHolder="#Phrase"></SearchCriteriaInput>
+                                <SearchCriteriaInput 
+                                    searchCriteriaLabel="HashTag(s):" 
+                                    searchCriteriaExample="Example: #dog#cat#blackbear" 
+                                    searchCriteriaPlaceHolder="#HashTag" 
+                                    searchCriteriaValue={this.state.hashTags} 
+                                    onSearchCriteriaChange={this.handleHashTagsInput}
+                                />
+                                <SearchCriteriaInput 
+                                    searchCriteriaLabel="Location(s):" 
+                                    searchCriteriaExample="Example: #newyork#UnitedStates#bangor,ME" 
+                                    searchCriteriaPlaceHolder="#Location"
+                                    searchCriteriaValue={this.state.locations} 
+                                    onSearchCriteriaChange={this.handleLocationsInput}
+                                />
+                                <SearchCriteriaInput 
+                                    searchCriteriaLabel="Phrase(s):" 
+                                    searchCriteriaExample="Example: #working late#I love blackbears" 
+                                    searchCriteriaPlaceHolder="#Phrase"
+                                    searchCriteriaValue={this.state.phrases} 
+                                    onSearchCriteriaChange={this.handlePhrasesInput}
+                                />
                                 {/* <div className="phraseCriteriaContainer">
                                     <div className="phraseLabelContainer">
                                         <text className="phraseLabel">
