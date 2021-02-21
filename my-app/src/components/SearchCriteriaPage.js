@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SettingsButton from './SettingsButton';
 import SearchCriteriaInput from './SearchCriteriaInput';
+import SearchCriteriaDate from './SearchCriteriaDate';
 import './css/SearchCriteriaPage.css'
 
 export default class SearchCriteriaPage extends Component {
@@ -11,12 +12,16 @@ export default class SearchCriteriaPage extends Component {
             searchType: '',
             hashTags: '',
             locations: '',
-            phrases: ''
+            phrases: '',
+            startDate: '',
+            endDate: ''
         };
 
         this.handleHashTagsInput = this.handleHashTagsInput.bind(this);
         this.handleLocationsInput = this.handleLocationsInput.bind(this);
         this.handlePhrasesInput = this.handlePhrasesInput.bind(this);
+        this.handleStartDateInput = this.handleStartDateInput.bind(this);
+        this.handleEndDateInput = this.handleEndDateInput.bind(this);
     }
 
     handleHashTagsInput(newHashTags){
@@ -27,6 +32,12 @@ export default class SearchCriteriaPage extends Component {
     }
     handlePhrasesInput(newPhrases){
         this.setState({phrases: newPhrases});
+    }
+    handleStartDateInput(newStartDate){
+        this.setState({startDate: newStartDate});
+    }
+    handleEndDateInput(newEndDate){
+        this.setState({endDate: newEndDate});
     }
     render() {
         return (
@@ -102,50 +113,18 @@ export default class SearchCriteriaPage extends Component {
                                     searchCriteriaValue={this.state.phrases} 
                                     onSearchCriteriaChange={this.handlePhrasesInput}
                                 />
-                                {/* <div className="phraseCriteriaContainer">
-                                    <div className="phraseLabelContainer">
-                                        <text className="phraseLabel">
-                                            Phrase(s):
-                                        </text>
-                                    </div>
-                                    <div className="phraseExampleContainer">
-                                        <text className="phraseExample">
-                                            Example: #working late#I love blackbears
-                                        </text>
-                                    </div>
-                                    <input type="search" className="phraseCriteria" value={this.state.phrases} onChange={this.handlePhrasesInput} placeholder="#Phrase">
-                                    </input>
-                                </div> */}
                             </div>
                             <div className="dateSelectionContainer">
-                                <div className="startDateContainer">
-                                    <div className="startDateLabelContainer">
-                                        <text className="startDateLabel">
-                                            Start Date:
-                                        </text>
-                                    </div>
-                                    <div className="startDateExampleContainer">
-                                        <text className="startDateExample">
-                                            Example: 01/01/2020
-                                        </text>
-                                    </div>
-                                    <input type="date" className="startDateInput" value={this.state.startDate} onChange={this.handleStartDateInput}>
-                                    </input>
-                                </div>
-                                <div className="endDateContainer">
-                                    <div className="endDateLabelContainer">
-                                        <text className="endDateLabel">
-                                            End Date:
-                                        </text>
-                                    </div>
-                                    <div className="endDateExampleContainer">
-                                        <text className="endDateExample">
-                                            Example: 01/01/2020
-                                        </text>
-                                    </div>
-                                    <input type="date" className="endDateInput" value={this.state.endDate} onChange={this.handleEndDateInput}>
-                                    </input>
-                                </div>
+                                <SearchCriteriaDate 
+                                    searchCriteriaDateLabel="Start Date:" 
+                                    searchCriteriaDateExample="Example: 01/01/2020" 
+                                    onSearchCriteriaDateChange={this.handleStartDateInput} 
+                                />
+                                <SearchCriteriaDate
+                                    searchCriteriaDateLabel="End Date:"
+                                    searchCriteriaDateExample="Example: 01/01/2020"
+                                    onSearchCriteriaDateChange={this.handleEndDateInput}
+                                />
                             </div>
                         </div>
                     </div>
