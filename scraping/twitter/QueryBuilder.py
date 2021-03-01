@@ -3,16 +3,19 @@ import tweepy
 #hashtags - array of hashtag strings
 #locations - array of location strings
 #phrases - array of phrase strings
-def build_query (hashtags, locations, phrases ):
+def build_query (hashtags, locations, phrases):
 
     query = ""
 
+    if (len(hashtags) != 0):
         query = query + "("
         for tag in hashtags:
+            if (tag.find("#") != 0):
+                tag = "#" + tag
             if (hashtags.index(tag) == len(hashtags) - 1):
-                query = query + "#" + tag + ") "
+                query = query + tag + ") "
             else:
-                query = query + "#" + tag + " OR " 
+                query = query + tag + " OR " 
         
     if (len(locations) != 0):
         query = query + "("
