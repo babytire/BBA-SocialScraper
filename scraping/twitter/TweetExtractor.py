@@ -6,6 +6,8 @@ import re
 from queue import Queue
 from time import sleep
 from tokens import api_key,api_secret_key,access_token,access_token_secret
+import requests
+
 
 #Passing in tokens
 auth = tweepy.OAuthHandler(api_key,api_secret_key)
@@ -16,7 +18,7 @@ api = tweepy.API(auth)
 directories = './scraped_posts/media/'
 os.makedirs(directories,exist_ok=True)
 # Creating the CSV file to be written to
-csv_file = open('./scraped_posts/scrape.csv', 'x')
+csv_file = open('./scraped_posts/scrape.csv', 'w', encoding = "utf-8")
 # Setting fields for csv format
 fields = [
     'Post ID',
@@ -65,7 +67,11 @@ def scrape_tweet(query,count):
             'Link' : url
         })
 
-scrape_tweet('minecraft',10)
+
+
+
+
+scrape_tweet('biden',10)
     
 
 
