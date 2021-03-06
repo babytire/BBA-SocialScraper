@@ -16,7 +16,7 @@ api = tweepy.API(auth)
 directories = './scraped_posts/media/'
 os.makedirs(directories,exist_ok=True)
 # Creating the CSV file to be written to
-csv_file = open('./scraped_posts/scrape.csv', 'x')
+csv_file = open('./scraped_posts/scrape.csv', 'w', encoding='utf-8')
 # Setting fields for csv format
 fields = [
     'Post ID',
@@ -35,18 +35,21 @@ writer = csv.DictWriter(csv_file,dialect='excel',fieldnames=fields)
 writer.writeheader()
 
 def scrape_tweet(query,count):
-    tweets = api.search(q=query,count=count)
+    tweets = api.search_full_archive('dev',query=query,maxResults=count)
 
     for i in range(len(tweets)):
+        if i % 100 == 0:
+            # create POST creation function to update number of tweets scrapped
+            continue  
         tweet_id = i
         created_at = tweets[i].created_at
         username = tweets[i].user.name
         screen_name = tweets[i].user.screen_name
         text = tweets[i].text
-        #reply_count = tweets[i].reply_count
+        reply_count = tweets[i].reply_count
         retweet_count = tweets[i].retweet_count
         likes = tweets[i].favorite_count
-        #location = tweets[i].place.country
+        location = tweets[i].place
         url = 'https://twitter.com/i/web/status/' + tweets[i].id_str
 
         split_date = re.search(r'(\d\d\-\d\d\-\d\d) (\d\d\:\d\d\:\d\d)',str(created_at))
@@ -60,8 +63,10 @@ def scrape_tweet(query,count):
             'Username' : username,
             'Screen Name' : screen_name,
             'Tweet' : text,
+            'Reply Count' : reply_count,
             'Retweet Count' : retweet_count,
             'Likes' : likes,
+            'Location' : location,
             'Link' : url
         })
 
