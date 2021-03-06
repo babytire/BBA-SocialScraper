@@ -24,7 +24,7 @@
 }
 .searchCriteriaPlatformSelectionContainer{
     position: relative;
-    height: 90vh;
+    height: 85%;
     width: 95vw;
     border: 2px solid black;
     margin-left: auto;
@@ -85,23 +85,25 @@
 }
 .searchCriteriaFormContainer{
     position: relative;
-    height: 90%;
-    width: 95%;
+    height: 60vh;
+    width: 85vw;
     border: 2px solid black;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     display: flex;
 }
 .searchByContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    height: 35vh;
+    justify-content: center;
+    height: 30vh;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .searchByLabel{
     font-family: Arial Black;
@@ -132,4 +134,15 @@
     height: 35vh;
     flex-direction: column;
     justify-content: space-evenly;
+}
+.searchButtonContainer{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.searchButton{
+    width: 200px;
+    height: 60px;
+    background: #E5E5E5;
+    border: 1px solid #000000;
+    box-sizing: border-box;
 }
