@@ -8,7 +8,6 @@ from time import sleep
 from tokens import api_key,api_secret_key,access_token,access_token_secret
 import requests
 
-
 #Passing in tokens
 auth = tweepy.OAuthHandler(api_key,api_secret_key)
 auth.set_access_token(access_token,access_token_secret)
@@ -67,12 +66,28 @@ def scrape_tweet(query,count):
             'Link' : url
         })
 
+        #Checking for media in the tweet
+        if hasattr(tweets[i], "extended_entities"):
+            count = 1
+            #for all media in tweet
+            for photo in tweets[i].extended_entities["media"]:
+                #saving media link and file name
+                if (photo['type'] == "photo"):
+                    picture_name = "./scraped_posts/media/" + str(i) + "-" + str(count) + ".jpg"
+                    link = photo['media_url_https']
+                elif (photo['type'] == "video"):
+                    picture_name = "./scraped_posts/media/" + str(i) + "-" + str(count) + ".mp4"
+                    link = photo['video_info']['variants'][0]['url']
+                elif (photo['type'] == "animated_gif"):
+                    picture_name = "./scraped_posts/media/" + str(i) + "-" + str(count) + ".mp4"
+                    link = photo['video_info']['variants'][0]['url']
 
+                #download media
+                r = requests.get(link)
+                with open(picture_name, 'wb') as f:
+                    f.write(r.content)
 
+                count += 1
 
-
-scrape_tweet('biden',10)
+#scrape_tweet('#gif',10)
     
-
-
-
