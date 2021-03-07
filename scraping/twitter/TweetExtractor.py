@@ -35,8 +35,10 @@ fields = [
 writer = csv.DictWriter(csv_file,dialect='excel',fieldnames=fields)
 writer.writeheader()
 
-def scrape_tweet(query,count):
-    tweets = api.search_full_archive('dev',query=query,maxResults=count)
+#latest and earliest must be in the form of yyyyMMddHHmm
+
+def scrape_tweet(query,count, latest, earliest):
+    tweets = api.search_full_archive('dev',query=query,maxResults=count, fromDate=latest, toDate=earliest)
 
     for i in range(len(tweets)):
         if i % 100 == 0:
@@ -94,5 +96,5 @@ def scrape_tweet(query,count):
 
                 count += 1
 
-#scrape_tweet('#gif',10)
+#scrape_tweet('#gif',10, 202101010101, 202102020202)
     
