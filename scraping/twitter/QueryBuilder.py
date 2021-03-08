@@ -1,13 +1,17 @@
-import tweepy
+def build_query (hashtags=None, locations=None, phrases=None):
+    """ Query builder function for calling Twitter's API. Returns a query built
+    from the parameters passed into it. 
 
-#hashtags - array of hashtag strings
-#locations - array of location strings
-#phrases - array of phrase strings
-def build_query (hashtags, locations, phrases):
+    Arguments:
+    - hashtags - String array of hashtags, this is None by default.
+    - locations - String array of locations, this is None by default.
+    - phrases - String array of phrases, this is None by default.
+
+    """
 
     query = ""
 
-    if (len(hashtags) != 0):
+    if (hashtags != None):
         query = query + "("
         for tag in hashtags:
             if (tag.find("#") != 0):
@@ -17,7 +21,7 @@ def build_query (hashtags, locations, phrases):
             else:
                 query = query + tag + " OR " 
         
-    if (len(locations) != 0):
+    if (locations != None):
         query = query + "("
         for loc in locations:
             if (loc.find(" ") != -1):
@@ -26,7 +30,8 @@ def build_query (hashtags, locations, phrases):
                 query = query + "place:" + loc + ") "
             else:
                 query = query + "place:" + loc + " OR " 
-    if (len(phrases) != 0):
+
+    if (phrases != None):
         query = query + "("
         for phrase in phrases:
             if (phrases.index(phrase) == len(phrases) - 1):
@@ -35,4 +40,3 @@ def build_query (hashtags, locations, phrases):
                 query = query + "\"" + phrase + "\"" + " OR " 
     
     return query
-

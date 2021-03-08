@@ -1,42 +1,12 @@
-import csv,os,threading,tweepy,re,requests,shutil
-from queue import Queue
-from time import sleep
+import csv,os,threading,tweepy,re,requests
 from tokens import api_key,api_secret_key,access_token,access_token_secret
 from datetime import datetime
+from QueryBuilder import build_query
 
-# Passing in tokens
-auth = tweepy.OAuthHandler(api_key,api_secret_key)
-auth.set_access_token(access_token,access_token_secret)
-# Creating api object
-api = tweepy.API(auth)
-# Setup of directories for scrape data
-now = datetime.now().strftime("%d-%m-%Y_%H")
-main_directory = f'./{now}/'
-media_directory = f'{main_directory}media/'
-os.makedirs(media_directory,exist_ok=True)
-# Creating the CSV file to be written to
-csv_file = open(f'{main_directory}scrape.csv', 'w', encoding = "utf-8")
-# Setting fields for csv format
-fields = [
-    'Post ID',
-    'Date',
-    'Time',
-    'Username',
-    'Screen Name',
-    'Tweet',
-    'Reply Count',
-    'Retweet Count',
-    'Likes',
-    'Location',
-    'Link']
-# Object to write to csv file
-writer = csv.DictWriter(csv_file,dialect='excel',fieldnames=fields)
-writer.writeheader()
-
-def scrape_tweet(query,count,earliest=None,latest=None):
-    """ Tweet scraping function, collects tweets from Twitter's API and scrapes 
+def scrape_tweet(query,count=50,earliest=None,latest=None):
+    """ Tweet scraper function, collects tweets from Twitter's API and scrapes 
     the text as well as the media of a tweet if it exists. Function results in a 
-    zip file containing a CSV file with scraped text along with a directory for 
+    zip archive containing a CSV file with scraped text along with a directory for 
     the media that was scraped. 
 
 
@@ -44,15 +14,47 @@ def scrape_tweet(query,count,earliest=None,latest=None):
     - query - filter/rules of tweets to find. More on query structure here: 
     https://developer.twitter.com/en/docs/labs/recent-search/guides/search-queries
     - count - number of tweets to collect
-    - earliest - earliest date in yyyyMMddHHmm format to search from, this is none by default
-    - latest - latest date in yyyyMMddHHmm format to search to, this is none by default
+    - earliest - earliest date in yyyyMMddHHmm format to search from, this is None by default
+    - latest - latest date in yyyyMMddHHmm format to search to, this is None by default
     """
+    
+    ##### Setup starts #####
+
+    # Passing in tokens
+    auth = tweepy.OAuthHandler(api_key,api_secret_key)
+    auth.set_access_token(access_token,access_token_secret)
+    # Creating api object
+    api = tweepy.API(auth)
+    # Setup of directories for scrape data
+    now = datetime.now().strftime("%d-%m-%Y_%H")
+    main_directory = f'./{now}/'
+    media_directory = f'{main_directory}media/'
+    os.makedirs(media_directory,exist_ok=True)
+    # Creating the CSV file to be written to
+    csv_file = open(f'{main_directory}scrape.csv', 'w', encoding = "utf-8")
+    # Setting fields for csv format
+    fields = [
+        'Post ID',
+        'Date',
+        'Time',
+        'Username',
+        'Screen Name',
+        'Tweet',
+        'Reply Count',
+        'Retweet Count',
+        'Likes',
+        'Location',
+        'Link']
+    # Object to write to csv file
+    writer = csv.DictWriter(csv_file,dialect='excel',fieldnames=fields)
+    writer.writeheader()
+
+    ##### Setup ends #####
+
+    # Call to api made here
     tweets = api.search_full_archive('dev',query=query,maxResults=count,fromDate=earliest,toDate=latest)
 
     for i in range(len(tweets)):
-        if i % 100 == 0:
-            # create POST creation function to update number of tweets scrapped
-            continue
         # Collecting data points of interest
         tweet_id = i
         created_at = tweets[i].created_at
@@ -65,6 +67,7 @@ def scrape_tweet(query,count,earliest=None,latest=None):
         location = tweets[i].place
         url = 'https://twitter.com/i/web/status/' + tweets[i].id_str
 
+        # Need to parse out date and time from created_at attribute
         split_date = re.search(r'(\d\d\-\d\d\-\d\d) (\d\d\:\d\d\:\d\d)',str(created_at))
         date = split_date.group(1)
         time = split_date.group(2)
@@ -106,16 +109,7 @@ def scrape_tweet(query,count,earliest=None,latest=None):
                     f.write(r.content)
 
                 count += 1
-        
-
-
-scrape_tweet('#gif',10)
-
-# These lines below don't work, once zipped the csv file loses it's contents
-
-# Zipping scraped data 
-#shutil.make_archive(f'twitter_scrape_from_{now}','zip',main_directory)
-# Removing temporay directories
-#shutil.rmtree(main_directory)
-
-    
+    # Zipping directory
+    os.system(f'zip -rqq twitter_scrape_from_{now}.zip {now}')
+    # Removing the directory
+    os.system(f'rm -rf {now}') 
