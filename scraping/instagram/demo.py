@@ -9,4 +9,3 @@ posts = input('Enter number of posts to get: ')
 url_extractor(tag,int(posts))
 # Reads links to queue for threads
 read_to_queue()
-

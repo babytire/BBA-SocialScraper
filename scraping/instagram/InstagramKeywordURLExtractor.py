@@ -26,29 +26,29 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
 
     if(category == 'hashtag'):
         page = 'https://www.instagram.com/explore/tags/' + search + '/'
-        regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
+        regex = re.compile(r'(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
 
     elif (category == 'person'):
         
         if (category2 == 'reels'):
             page = 'https://www.instagram.com/' + search + '/reels/'
-            regex = re.compile('(https:\/\/www\.instagram\.com\/reel\/)(\w|_){11}(\/)')
+            regex = re.compile(r'(https:\/\/www\.instagram\.com\/reel\/)(\w|_){11}(\/)')
 
         elif (category2 == 'igtv'):
             page = 'https://www.instagram.com/' + search + '/channel/'
-            regex = re.compile('(https:\/\/www\.instagram\.com\/tv\/)(\w|_){11}(\/)')
+            regex = re.compile(r'(https:\/\/www\.instagram\.com\/tv\/)(\w|_){11}(\/)')
 
         elif (category2 == 'tagged'):
             page = 'https://www.instagram.com/' + search + '/tagged/'
-            regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
+            regex = re.compile(r'(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
 
         else:
             page = 'https://www.instagram.com/' + search + '/'
-            regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
+            regex = re.compile(r'(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
 
     elif (category == 'location'):
         page = search
-        regex = re.compile('(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
+        regex = re.compile(r'(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
 
 
     #Load Chromedriver
@@ -93,7 +93,7 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
                     listOfLinks.append(elem.get_attribute("href"))
                     x += 1
                     count = 0
-                    print(x)
+                    #print(x)
             #If we havent scraped new links in 50 iterations, there are no more
             if x == lastx and count == 50:
                 break
@@ -105,7 +105,6 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
             sleep(0.1)
 
     #Write scraped post links to URLFrontier text document
-    open('URLFrontier.txt','w').close()
     f = open("URLFrontier.txt", "w", encoding= 'utf-8')
     
 

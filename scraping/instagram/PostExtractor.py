@@ -1,12 +1,10 @@
-from instascrape import Post
-from heady import headers
-from queue import Queue
-from datetime import datetime
-from time import sleep
 import threading
 import csv
 import os
-
+from instascrape import Post, exceptions
+from heady import headers
+from queue import Queue
+from time import sleep
 
 # Defining what a thread will do when created
 def scrape_post(url_q,counter=[0]):
@@ -19,7 +17,8 @@ def scrape_post(url_q,counter=[0]):
 
     """
     while True:
-        post = Post(url_q.get())
+        url = url_q.get()
+        post = Post(url)
         post.scrape(headers=headers)
         timestamp = post.timestamp
         full_name = post.full_name
@@ -47,7 +46,8 @@ def scrape_post(url_q,counter=[0]):
             'Username' : username,
             'Caption' : caption,
             'Likes' : likes,
-            'Location' : location})
+            'Location' : location,
+            'Link' : url})
         # Then releases lock once done
         global_lock.release()
 
@@ -64,15 +64,17 @@ def scrape_post(url_q,counter=[0]):
 directories = './scraped_posts/media/'
 os.makedirs(directories,exist_ok=True)
 # Creating the CSV file to be written to
-csv_file = open('./scraped_posts/scrape.csv', 'x')
+csv_file = open('./scraped_posts/scrape.csv', 'w')
 # Setting fields for csv format
-fields = ['Post ID',
+fields = [
+    'Post ID',
     'Timestamp',
     'Full Name',
     'Username',
     'Caption',
     'Likes',
-    'Location']
+    'Location',
+    'Link']
 # Object to write to csv file
 writer = csv.DictWriter(csv_file,dialect='excel',fieldnames=fields)
 writer.writeheader()
