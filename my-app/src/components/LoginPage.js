@@ -19,10 +19,31 @@ export default class LoginPage extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
     }
+    // const [todo, setTodo] = useState([]);
+    // const [addTodo, setAddTodo] = useState('');
+ 
+    // useEffect() {
+    //    fetch('/api/loginClicked')
+    //     .then(response => {
+    //       if(response.ok){
+    //          return response.json()
+    //       }
+    //     })
+    //     // }).then(data => setTodo(data))// }).then(data=>console.log(data))
+    // }
 
     handleLogin(event){
-        // 
-        console.log(this.state.email);
+        const fetchUrl = `/api/loginClicked/`
+        
+        fetch(fetchUrl, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password
+            })
+        }).then(response => response.json())
+          .then(data => console.log(data))
+        
         event.preventDefault();
     }
 
@@ -42,9 +63,9 @@ export default class LoginPage extends Component {
         return (
             <div className="loginPageContent">
             <div className="loginPageTitleContainer">
-                <text className="loginPageTitle">
+                {/* <text className="loginPageTitle">
                     {this.props.title}
-                </text>
+                </text> */}
         </div>
             <div className="loginPageContainer">
                 <div className="contactUsContainer">
