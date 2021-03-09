@@ -25,18 +25,18 @@ function App() {
       {/* <LoginPage title={"Scraper Log In"}></LoginPage> */}
       <Router>
         <Switch>
-          <Route exact path='/'>
+          {/* <Route exact path='/'>
             <TodoPage/>
-          </Route>
+          </Route> */}
           <Route exact path = '/LoginPage'>
             <LoginPage title = {"Scrape Log In"}/>
           </Route>
           <Route exact path = '/HomePage'>
             <HomePage title = {"Scraper Landing Page"}/>
           </Route>
-          <Route exact path='/:id'>
+          {/* <Route exact path='/:id'>
             <Show/>
-          </Route>
+          </Route> */}
         </Switch>
       </Router>
       {/* <header className="App-header">

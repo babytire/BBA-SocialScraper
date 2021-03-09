@@ -13,8 +13,8 @@
 /build
 
 # Install Files
-**/package.json
-**/package-lock.json
+**/my-app/package.json
+**/my-app/package-lock.json
 
 # misc
 .DS_Store
