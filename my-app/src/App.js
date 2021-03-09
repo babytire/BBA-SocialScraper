@@ -3,6 +3,7 @@ import './App.css';
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage'
 import SearchCriteriaPage from './components/SearchCriteriaPage.js'
+import SearchingPage from './components/SearchingPage';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
             </text>
         </div>
       
-      <SearchCriteriaPage></SearchCriteriaPage>
+      <SearchingPage></SearchingPage>
+      {/* <SearchCriteriaPage></SearchCriteriaPage> */}
       {/* <HomePage title={"Home Page"}></HomePage> */}
       {/* <LoginPage title={"Scraper Log In"}></LoginPage> */}
     </div>

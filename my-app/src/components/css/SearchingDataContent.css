@@ -1,0 +1,16 @@
+.searchingDataContentContainer{
+    display: flex;
+    flex-direction: column;
+}
+.searchingDataContentContainer label{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+}
+.searchingDataContentContainer text{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+}
