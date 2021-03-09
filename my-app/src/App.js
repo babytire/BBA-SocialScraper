@@ -6,8 +6,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css'
-import { TodoPage } from './Pages/TodoPage'
-import { Show } from './Pages/Show'
+// import { TodoPage } from './Pages/TodoPage'
+// import { Show } from './Pages/Show'
 import LoginPage from './components/LoginPage'
 import HomePage from './components/HomePage'
 // Imports from react-router
@@ -28,11 +28,11 @@ function App() {
           {/* <Route exact path='/'>
             <TodoPage/>
           </Route> */}
-          <Route exact path = '/LoginPage'>
-            <LoginPage title = {"Scrape Log In"}/>
-          </Route>
           <Route exact path = '/HomePage'>
             <HomePage title = {"Scraper Landing Page"}/>
+          </Route>
+          <Route exact path = '/LoginPage'>
+            <LoginPage title = {"Scrape Log In"}/>
           </Route>
           {/* <Route exact path='/:id'>
             <Show/>

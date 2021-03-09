@@ -14,7 +14,7 @@ export default class HomePage extends Component {
     render() {
         return (
             <div className="homePageContainer">
-                
+                <text> HI</text>
             </div>
         )
     }
