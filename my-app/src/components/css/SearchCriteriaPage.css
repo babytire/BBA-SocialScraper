@@ -112,18 +112,33 @@
     font-size: 18px;
     line-height: 23px;
 }
-.searchByContainer button{
+.searchByInput div{
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    margin: 10px;
+}
+.searchByInput div label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 150px;
     height: 50px;
-    background: #0094FF;
-    border-radius: 20px;
-    border: none;
-    margin: auto;
     font-family: Arial Black;
     font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
+    font-weight: normal;
+    font-size: 22px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+.searchByInput div input[type=checkbox]{
+    display: none;
+}
+.searchByInput div input[type=checkbox]:checked + label{
+    background: #0094FF;
     color: #FFFFFF;
+    border: 2px solid #0094FF;
 }
 .searchCriteriaContainer{
     display: flex;

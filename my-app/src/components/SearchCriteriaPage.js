@@ -78,18 +78,33 @@ export default class SearchCriteriaPage extends Component {
                         </div>
                         <div className="searchCriteriaFormContainer">
                             <div className="searchByContainer">
-                                <text className="searchByLabel">
+                                <label className="searchByLabel">
                                     Search By:
-                                </text>
-                                <button className="hashTagsButton">
-                                    HashTags
-                                </button>
-                                <button className="locationButton">
-                                    Location
-                                </button>
-                                <button className="phraseButton">
-                                    Phrase
-                                </button>
+                                </label>
+                                <div className="searchByInput">
+                                    <div>
+                                        <input type="checkbox" id="hashTagCheckBox"></input>
+                                        <label for="hashTagCheckBox">HashTags</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="locationCheckBox"></input>
+                                        <label for="locationCheckBox">Locations</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="phraseCheckBox"></input>
+                                        <label for="phraseCheckBox">Phrases</label>
+                                    </div>
+                                    {/* <input type="checkbox" className="hashTagsButton" name="HashTags"></input>
+                                    <span>
+                                        <label for="HashTags" className="hashTagsLabel"></label>
+                                    </span> */}
+                                    {/* <label className="locationsLabel">Locations
+                                        <input type="checkbox" className="locationButton" name="Location" />
+                                    </label>
+                                    <label className="phrasesLabel">Phrase
+                                        <input type="checkbox" className="phraseButton" name="Phrase" />
+                                    </label> */}
+                                </div>
                             </div>
                             <div className="searchCriteriaContainer">
                                 <SearchCriteriaInput 
