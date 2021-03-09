@@ -7,12 +7,27 @@ export default class SearchingPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            scraped: '3200 Tweets Found'
+            scraped: '3200'
         }
         
-        // this.handleHashTagsInput = this.handleHashTagsInput.bind(this);
+        this.handleScrapeUpdate = this.handleScrapeUpdate.bind(this);
+        this.handleEndSearch = this.handleEndSearch.bind(this);
+        this.handleNewSearch = this.handleNewSearch.bind(this);
     };
 
+    handleScrapeUpdate(){
+        //Ever X seconds update
+        // fetch()
+        // .then(response => response.json())
+        // .then(data => this.setState({ scraped: data.scraped}))
+    }
+
+    handleEndSearch(){
+        
+    }
+    handleNewSearch(){
+
+    }
 
     render() {
         return (
@@ -25,13 +40,13 @@ export default class SearchingPage extends Component {
                 <div className="searchingContent">
                     <SettingsButton className="settingsButton"></SettingsButton>
                     <div className="searchingDataContent">
-                        <SearchingDataContent title="User:" data="Adbul Karim"></SearchingDataContent>
-                        <SearchingDataContent title="HashTag(s):" data="#Dog#Cat"></SearchingDataContent>
-                        <SearchingDataContent title="Location(s):" data="#Arizona"></SearchingDataContent>
-                        <SearchingDataContent title="Phrase(s):" data="N/A"></SearchingDataContent>
+                        <SearchingDataContent title="User:" data={this.props.user}></SearchingDataContent>
+                        <SearchingDataContent title="HashTag(s):" data={this.props.hashTags}></SearchingDataContent>
+                        <SearchingDataContent title="Location(s):" data={this.props.locations}></SearchingDataContent>
+                        <SearchingDataContent title="Phrase(s):" data={this.props.phrases}></SearchingDataContent>
                     </div>
                     <div className="searchingScrapeDataContent">
-                        <text>{this.state.scraped}</text>
+                        <text>{this.state.scraped} {this.props.platform} Found</text>
                     </div>
                 </div>
                 <div className="searchingButtonsContainer">
