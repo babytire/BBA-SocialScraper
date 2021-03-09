@@ -94,16 +94,6 @@ export default class SearchCriteriaPage extends Component {
                                         <input type="checkbox" id="phraseCheckBox"></input>
                                         <label for="phraseCheckBox">Phrases</label>
                                     </div>
-                                    {/* <input type="checkbox" className="hashTagsButton" name="HashTags"></input>
-                                    <span>
-                                        <label for="HashTags" className="hashTagsLabel"></label>
-                                    </span> */}
-                                    {/* <label className="locationsLabel">Locations
-                                        <input type="checkbox" className="locationButton" name="Location" />
-                                    </label>
-                                    <label className="phrasesLabel">Phrase
-                                        <input type="checkbox" className="phraseButton" name="Phrase" />
-                                    </label> */}
                                 </div>
                             </div>
                             <div className="searchCriteriaContainer">
