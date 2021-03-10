@@ -1,5 +1,13 @@
 from flask import Flask, jsonify, request, json
 from flask_sqlalchemy import SQLAlchemy
+import sys
+
+sys.path.insert(1, './twitter')
+from TweetExtractor import scrape_tweet, build_query
+
+sys.path.insert(1, './instagram')
+from InstagramKeywordURLExtractor import url_extractor
+from PostExtractor import read_to_queue
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///example.db"
@@ -11,7 +19,7 @@ class UserDB(db.Model):
    password = db.Column(db.Text, nullable = False)
    first = db.Column(db.Text, nullable = False)
    last = db.Column(db.Text, nullable = False)
-   # scrapeHistory = db.Column(db.)
+   # Need to add last x searches for search histroy functionality
 
    def __str__(self):
       return f'{self.id} {self.content}'
@@ -29,22 +37,54 @@ def index():
    users = UserDB.query.all()
    return jsonify([*map(user_serializer, UserDB.query.all())])
 
-@app.route('/api/create', methods=['POST'])
-def create():
-   request_data = json.loads(request.data)
-   user = UserDB(password = request_data ['content'])
+# todo: Must return what date range the uses can select from so the calendar can be generated with that information.
+# todo: app.route to send email
+@app.route('/api/getTwitterDateRange', methods=['GET'])
+def getEarlyLateRange():
+   pass
 
-   db.session.add(user)
-   db.session.commit()
+@app.route('/api/scrapeInstagram/', methods =['GET', 'POST'])
+def scrapeInstagram():
+   pass
+   # Get the user information. JSON body: {}
 
-   return {'201': 'user created successfully'}
+# Make sure this isn't set to have GET with it as well.
+@app.route('/api/scrapeTwitter/', methods=['GET', 'POST'])
+def scrapeTwitter():
+   # Get the user information. All lists are comma-serparated. JSON body: {"hashTags": "list,of,tags", "locations": "list,of,locations", "phrases": "list,of,phrases", "earliestDate": "yyyyMMddHHmm", "latestDate": "yyyyMMddHHmm"}
+   # request_data = json.loads(request.data)
 
-#someone goes to /api/ any id, pass back that id
-@app.route('/api/<int:id>')
-def show(id):
-   print ("This is the id: " + str(id))
-   return jsonify([*map(user_serializer, UserDB.query.filter_by(id=id))])
+   # hashTags = request_data['hashTags'].split(",")
+   # locations = request_data['locations'].split(",")
+   # phrases = request_data['phrases'].split(",")
+   earliestDate = None
+   latestDate = None  
 
+   # if(request_data['earliestDate'] != "" and request_data['latestDate'] != ""):
+   #    earliestDate = request_data['earliestDate']
+   #    latestdate = request_data['latestDate']
+
+   # Prune input data for any empty strings listed.
+   # Set empty lists ([]) to None
+   # Set empty lists (['']) to None
+
+   hashTags = ['']
+   locations = None
+   phrases = None
+
+   query = build_query(hashTags, locations, phrases)
+   scrape_tweet(query, earliestDate, latestDate)
+
+   return 
+
+
+# #someone goes to /api/ any id, pass back that id
+# @app.route('/api/<int:id>')
+# def show(id):
+#    print ("This is the id: " + str(id))
+#    return jsonify([*map(user_serializer, UserDB.query.filter_by(id=id))])
+
+#InProgress
 @app.route('/api/deleteUser', methods=['POST'])
 def delete():
    # Get the user information. JSON Body: {"email": "email@email.com"}
@@ -92,7 +132,7 @@ def createUser():
          if(inputFirstName != ""):
             if(inputLastName != ""):
                # Build out a user to put into the DB
-               user = UserDB(email = email, first = inputFirstName, last = inputLastName, password = inputPassword)
+               user = UserDB(email = inputEmail, first = inputFirstName, last = inputLastName, password = inputPassword)
                # Store the user in the User DB
                db.session.add(user)
                db.session.commit()
