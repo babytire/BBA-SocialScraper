@@ -2,7 +2,8 @@
 import './App.css';
 // import HomePage from './components/HomePage';
 // import LoginPage from './components/LoginPage'
-import ContactUsPage from './components/ContactUsPage'
+// import ContactUsPage from './components/ContactUsPage'
+import SettingsPage from './components/SettingsPage'
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       
       {/* <HomePage title={"Home Page"}></HomePage> */}
       {/* <LoginPage title={"Scraper Log In"}></LoginPage> */}
-      <ContactUsPage title={"Contact Us"}></ContactUsPage>
+      {/* <ContactUsPage title={"Contact Us"}></ContactUsPage> */}
+      <SettingsPage title={"Settings"}></SettingsPage>
       
       
       

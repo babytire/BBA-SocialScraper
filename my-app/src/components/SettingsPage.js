@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './css/SettingsPage.css'
 
-export default class AdminSettingsPage extends Component {
+export default class SettingsPage extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -58,11 +58,6 @@ export default class AdminSettingsPage extends Component {
 					<div className="homeButtonContainer">
 						<button className="homeButton">Home</button>
 					</div>
-					<div className="topButtonsContainer">
-						<button className="contactRequestButton">View Contact Requests</button>
-						<button className="editUsersButton">Edit Users</button>
-						<button className="deactivateAccountButton">Deactivate Account</button>
-					</div>
 					<div className="secondRowContainer">
 						<div className="emailDownloadContainer">
 							<form className="emailDownloadForm">
@@ -90,33 +85,18 @@ export default class AdminSettingsPage extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="approveAccountsContainer">
-						<div className="approveAccountsTitleContainer">
-							<text className="approveAccountsTitle">Approve Accounts</text>
-						</div>
-						<div className="approveScrollingContainer">
-							<div className="approveScrollBox">
-								Scroll box: needs to be hooked up to DB.
-								{/*needs to hook up to DB to show accounts to approve.*/}
-							</div>
-						</div>
-						<div className="delAppButtonsContainer">
-							<div className="deleteButtonContainer">
-								<button className="deleteButton">Delete</button>
-							</div>
-							<div className="approveButtonContainer">
-								<button className="approveButton">Approve</button>
-							</div>
-						</div>
-					</div>
+					
 					<div className="bottomButtonsContainer">
 						<div className="logoutButtonContainer">
 							<button className="logoutButton">Logout</button>
 						</div>
-						<div className="saveChangesButtonContainer">
-							<button className="saveChangesButton">Save Changes</button>
+						<div className="topButtonsContainer">
+							<button className="deactivateAccountButton">Deactivate Account</button>
 						</div>
 					</div>
+					<div className="saveChangesButtonContainer">
+							<button className="saveChangesButton">Save Changes</button>
+						</div>
 				</div>
 			</div>
 		)
