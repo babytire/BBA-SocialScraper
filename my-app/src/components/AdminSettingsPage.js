@@ -63,39 +63,40 @@ export default class AdminSettingsPage extends Component {
 						<button className="editUsersButton">Edit Users</button>
 						<button className="deactivateAccountButton">Deactivate Account</button>
 					</div>
-					<div className="emailDownloadContainer">
-						<form className="emailDownloadForm">
-							<div className="formContainer">
-								<div className="emailContainer">
-									<text className="emailText">Email: </text>
-									<input type="email" className="emailInputBox" placeholder="first.last@email.com"></input>
+					<div className="secondRowContainer">
+						<div className="emailDownloadContainer">
+							<form className="emailDownloadForm">
+								<div className="formContainer">
+									<div className="emailContainer">
+										<text className="emailText">Email: </text>
+										<input type="email" className="emailInputBox" placeholder="first.last@email.com"></input>
+									</div>
+									<div className="downloadContainer">
+										<text className="downloadText">Download Location: </text>
+										<input type="text" className="downloadLocationBox" placeholder="C:/Downloads"></input>
+									</div>
 								</div>
-								<div className="downloadContainer">
-									<text className="downloadText">Download Location: </text>
-									<input type="text" className="downloadLocationBox" placeholder="C:/Downloads"></input>
-								</div>
+							</form>
+						</div>
+						<div className="toggleButtonsContainer">
+							<div className="scrapeHistoryToggleContainer">
+								<button className="scrapeHistoryToggle">See Scrape History</button>
 							</div>
-						</form>
-					</div>
-					<div className="toggleButtonsContainer">
-						<div className="scrapeHistoryToggleContainer">
-							<button className="scrapeHistoryToggle">See Scrape History</button>
-						</div>
-						<div className="advancedSearchToggleContainer">
-							<button className="advancedSearchToggle">Always Advanced Search</button>
-						</div>
-						<div className="emailNotifToggleContainer">
-							<button className="emailNotifToggle">Email Notifications</button>
+							<div className="advancedSearchToggleContainer">
+								<button className="advancedSearchToggle">Always Advanced Search</button>
+							</div>
+							<div className="emailNotifToggleContainer">
+								<button className="emailNotifToggle">Email Notifications</button>
+							</div>
 						</div>
 					</div>
 					<div className="approveAccountsContainer">
 						<div className="approveAccountsTitleContainer">
-							<text className="approveAccountTitle">Approve Accounts</text>
+							<text className="approveAccountsTitle">Approve Accounts</text>
 						</div>
 						<div className="approveScrollingContainer">
 							<div className="approveScrollBox">
-								As you can see, once there's enough text in this box, the box will grow scroll bars... that's why we call it a scroll box! 
-								You could also place an image into the scroll box.
+								Scroll box: needs to be hooked up to DB.
 								{/*needs to hook up to DB to show accounts to approve.*/}
 							</div>
 						</div>
