@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
 /API/__pycache__
+=======
+>>>>>>> development
 
 # testing
 /coverage
@@ -12,10 +15,13 @@
 # production
 /build
 
+<<<<<<< HEAD
 # Install Files
 **/my-app/package.json
 **/my-app/package-lock.json
 
+=======
+>>>>>>> development
 # misc
 .DS_Store
 .env.local
@@ -25,4 +31,8 @@
 
 npm-debug.log*
 yarn-debug.log*
+<<<<<<< HEAD
 yarn-error.log*
+=======
+yarn-error.log*
+>>>>>>> development

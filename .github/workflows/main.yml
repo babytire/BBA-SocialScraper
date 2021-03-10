@@ -1,0 +1,38 @@
+name: Deployment From GitHub to AWS
+on:
+  push:
+    branches:
+      - BS-23-criteria
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout Latest Repo
+        uses: actions/checkout@BS-23-criteria
+      
+      - name: Generate Deployment Package
+        run: zip -r deploy.zip * -x "**node_modules**"
+        
+      - name: Get Timestamp
+        uses: gerred/actions/current-time@BS-23-criteria
+        id: current-time
+        
+      - name: Run String Replace
+        uses: frabert/replace-string-action@BS-23-criteria
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+          
+      - name: Deploy to EB
+        uses: einargilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: BS23criteria-1
+          environment_name: Bs23criteria1-env
+          version_label: "the-simple-engineer-deployment-${{ steps.format-time.outputs.replaced }}"
+          region: us-west-2
+          deployment_package: deploy.zip

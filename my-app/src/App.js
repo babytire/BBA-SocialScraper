@@ -10,6 +10,8 @@ import './App.css'
 // import { Show } from './Pages/Show'
 import LoginPage from './components/LoginPage'
 import HomePage from './components/HomePage'
+import ContactUsPage from './components/ContactUsPage'
+
 // Imports from react-router
 import {
   BrowserRouter as Router,
@@ -33,6 +35,9 @@ function App() {
           </Route>
           <Route exact path = '/LoginPage'>
             <LoginPage title = {"Scrape Log In"}/>
+          </Route>
+          <Route exact path = '/ContactUsPage'>
+            <ContactUsPage title={"Contact Us"}></ContactUsPage>
           </Route>
           {/* <Route exact path='/:id'>
             <Show/>
