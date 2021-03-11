@@ -5,6 +5,7 @@ from instascrape import Post, exceptions
 from heady import headers
 from queue import Queue
 from time import sleep
+from datetime import datetime
 
 # Defining what a thread will do when created
 def scrape_post(url_q,counter=[0]):
@@ -53,18 +54,20 @@ def scrape_post(url_q,counter=[0]):
 
         # Checks media type to ensure corrent naming and extension 
         if post.is_video:
-            post.download(f'{directories}videoID#{post_id}.mp4')
+            post.download(f'{media_directory}videoID#{post_id}.mp4')
         else:
-            post.download(f'{directories}pictureID#{post_id}.jpg')
+            post.download(f'{media_directory}pictureID#{post_id}.jpg')
 
         # Let queue know task is done
         url_q.task_done()
 
 # Setting up directories for scraped data
-directories = './scraped_posts/media/'
-os.makedirs(directories,exist_ok=True)
+now = datetime.now().strftime("%d-%m-%Y_%H")
+main_directory = f'./{now}/'
+media_directory = f'{main_directory}media/'
+os.makedirs(media_directory,exist_ok=True)
 # Creating the CSV file to be written to
-csv_file = open('./scraped_posts/scrape.csv', 'w')
+csv_file = open(f'{main_directory}scrape.csv', 'w', encoding='utf-8')
 # Setting fields for csv format
 fields = [
     'Post ID',
