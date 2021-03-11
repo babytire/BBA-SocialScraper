@@ -58,8 +58,7 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
     chrome_options.add_argument("--disable-gpu")
 
     #This useragent must be replaced with useragent specific to os and browser being worked with. 
-    chrome_options.add_argument(headers['user-agent']) 
-    #chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36")
+    chrome_options.add_argument(headers['user-agent'])
 
     #Load Chromedriver
     browser = webdriver.Chrome(executable_path = path_to_driver, options = chrome_options) #Replace with path to chromedriver.exe
