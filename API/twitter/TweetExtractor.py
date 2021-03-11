@@ -129,9 +129,10 @@ def build_query (hashtags=None, locations=None, phrases=None):
     if (hashtags != None):
         query = query + "("
         for tag in hashtags:
+            old_tag = tag
             if (tag.find("#") != 0):
                 tag = "#" + tag
-            if (hashtags.index(tag) == len(hashtags) - 1):
+            if (hashtags.index(old_tag) == len(hashtags) - 1):
                 query = query + tag + ") "
             else:
                 query = query + tag + " OR " 
@@ -139,9 +140,10 @@ def build_query (hashtags=None, locations=None, phrases=None):
     if (locations != None):
         query = query + "("
         for loc in locations:
-            if (loc.find(" ") != -1):
+            old_loc = loc
+            if not(loc.startswith("\"") and loc.endswith("\"")):
                 loc = "\"" + loc + "\""
-            if (locations.index(loc) == len(locations) - 1):
+            if (locations.index(old_loc) == len(locations) - 1):
                 query = query + "place:" + loc + ") "
             else:
                 query = query + "place:" + loc + " OR " 
@@ -149,9 +151,12 @@ def build_query (hashtags=None, locations=None, phrases=None):
     if (phrases != None):
         query = query + "("
         for phrase in phrases:
-            if (phrases.index(phrase) == len(phrases) - 1):
-                query = query + "\"" + phrase + "\"" + ") "
+            old_phrase = phrase
+            if not(phrase.startswith("\"") and phrase.endswith("\"")):
+                phrase = "\"" + phrase + "\""
+            if (phrases.index(old_phrase) == len(phrases) - 1):
+                query = query + phrase + ") "
             else:
-                query = query + "\"" + phrase + "\"" + " OR " 
+                query = query + phrase + " OR " 
     
     return query
