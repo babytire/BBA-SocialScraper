@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import re
-from heady import insta_username, insta_password, path_to_driver
+from heady import insta_username, insta_password, path_to_driver,headers
 
 
 
@@ -57,10 +57,9 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
 
-    #This useragent must be replaced with useragent specific to os and browser being worked with.  
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36")
-
-    path_to_driver = "C:/Users/ryanh/Desktop/School/COS 397/Python/chromedriver_win32/chromedriver.exe"
+    #This useragent must be replaced with useragent specific to os and browser being worked with. 
+    chrome_options.add_argument(headers['user-agent']) 
+    #chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36")
 
     #Load Chromedriver
     browser = webdriver.Chrome(executable_path = path_to_driver, options = chrome_options) #Replace with path to chromedriver.exe
