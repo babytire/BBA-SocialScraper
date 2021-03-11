@@ -1,8 +1,9 @@
 from time import sleep
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 import re
 from heady import insta_username, insta_password, path_to_driver
-
 
 
 
@@ -50,9 +51,19 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
         page = search
         regex = re.compile(r'(https:\/\/www\.instagram\.com\/p\/)(\w|_){11}(\/)')
 
+    #setting chromebrowser to headless and setting a manuel useragent so instagram doesn't detect we're headless
+    chrome_options = Options()
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
+
+    #This useragent must be replaced with useragent specific to os and browser being worked with.  
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36")
+
+    path_to_driver = "C:/Users/ryanh/Desktop/School/COS 397/Python/chromedriver_win32/chromedriver.exe"
 
     #Load Chromedriver
-    browser = webdriver.Chrome(executable_path = path_to_driver) #Replace with path to chromedriver.exe
+    browser = webdriver.Chrome(executable_path = path_to_driver, options = chrome_options) #Replace with path to chromedriver.exe
     browser.implicitly_wait(5)
 
     #Load and login to Instagram
@@ -60,8 +71,8 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
 
     sleep(2)
 
-    username_input = browser.find_element_by_css_selector("input[name='username']")
-    password_input = browser.find_element_by_css_selector("input[name='password']")
+    username_input = browser.find_element(By.CSS_SELECTOR, "input[name='username']")
+    password_input = browser.find_element(By.CSS_SELECTOR, "input[name='password']")
 
     username_input.send_keys(insta_username) #Replace 'Username' with Instagram username
     password_input.send_keys(insta_password) #Replace 'Password' with Instagram password
