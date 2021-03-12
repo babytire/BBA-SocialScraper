@@ -73,8 +73,14 @@ def scrapeTwitter():
    request_data = json.loads(request.data)
 
    hashTags = request_data['hashTags'].split(",")
+   hashTags = hashTags[0].split("#")
+   hashTags.pop(0)
    locations = request_data['locations'].split(",")
+   locations = locations[0].split("#")
+   locations.pop(0)
    phrases = request_data['phrases'].split(",")
+   phrases = phrases[0].split("#")
+   phrases.pop(0)
    earliestDate = None
    latestDate = None  
 
@@ -95,7 +101,6 @@ def scrapeTwitter():
    elif (len(phrases) <= 0):
       phrases = None
    
-
    query = build_query(hashTags, locations, phrases)
    scrape_tweet(query, None, None)
 

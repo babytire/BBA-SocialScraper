@@ -13,9 +13,11 @@ export default class HomePage extends Component {
                         {this.props.title}
                     </text>
                 </div>
+                <div className="homeSettingsContainer">
+                    <SettingsButton className="homeSettingsButton"></SettingsButton>
+                </div>
                 <div className="homePageContainer">
                     
-                    <SettingsButton></SettingsButton>
                     
                     <div className="homePageContentContainer">
                         <div className="previousSearchContainer">

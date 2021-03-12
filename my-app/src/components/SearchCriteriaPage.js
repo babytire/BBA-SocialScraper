@@ -5,6 +5,7 @@ import SearchCriteriaDate from './SearchCriteriaDate';
 import './css/SearchCriteriaPage.css'
 import HomeButton from './HomeButton';
 import { Link } from 'react-router-dom';
+import NavButtons from './NavButtons'
 
 export default class SearchCriteriaPage extends Component {
     constructor(props){
@@ -77,13 +78,12 @@ export default class SearchCriteriaPage extends Component {
                     </label>
                 </div>
                 <div className="searchCriteriaPlatformSelectionContainer">
+                    <NavButtons className="navButtons"></NavButtons>
                     <div className="platformSearchContentContainer">
                         <div className="platformSelectionContainer">
-                            <HomeButton className="homeButton"></HomeButton>
-                        <SettingsButton className="settingsButton"></SettingsButton>
-                            <label className="platformLabel">
+                            <text className="platformLabel">
                                 Platform:
-                            </label>
+                            </text>
                             <select className="platformSelector">
                                 <option value={this.state.platformSelector}>Select</option>
                                 <option value={this.state.platformSelector}>Twitter</option>
