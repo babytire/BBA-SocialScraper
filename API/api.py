@@ -13,13 +13,28 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///example.db"
 db = SQLAlchemy(app)
 
+# Initialize the DB Model with a user example.
+# python3
+# from api import db
+# db.create_all ()
+
+# from api import Todo
+# user = UserDB(email = "a2a.a", password = "foo", first = "bar", last = "pie")
+# db.session.add(user)
+# db.session.commit()
+
+# second_user = UserDB(email = "b2b.b", password = "oof", first = "rab", last = "eip")
+# db.session.add(second_user)
+# db.session.commit()
+
 # Creat a model
 class UserDB(db.Model):
    email = db.Column(db.Text, nullable = False, primary_key = True)
    password = db.Column(db.Text, nullable = False)
    first = db.Column(db.Text, nullable = False)
    last = db.Column(db.Text, nullable = False)
-   # Need to add last x searches for search histroy functionality
+   # todo: PendingAccount colum = True/False
+   # todo: Need to add last x searches for search histroy functionality
 
    def __str__(self):
       return f'{self.id} {self.content}'
@@ -45,37 +60,46 @@ def getEarlyLateRange():
 
 @app.route('/api/scrapeInstagram/', methods =['GET', 'POST'])
 def scrapeInstagram():
+   # Get the user information. JSON body: {"search_term": "hashtag/person/location", ""}
+   request_data = json.loads(request.data)
+   url_extractor(request_data['search_term'], )
+
    pass
-   # Get the user information. JSON body: {}
 
 # Make sure this isn't set to have GET with it as well.
-@app.route('/api/scrapeTwitter/', methods=['GET', 'POST'])
+@app.route('/api/scrapeTwitter/', methods=['POST'])
 def scrapeTwitter():
-   # Get the user information. All lists are comma-serparated. JSON body: {"hashTags": "list,of,tags", "locations": "list,of,locations", "phrases": "list,of,phrases", "earliestDate": "yyyyMMddHHmm", "latestDate": "yyyyMMddHHmm"}
-   # request_data = json.loads(request.data)
+   # Get the user information. All lists are comma-serparated. JSON body: {"#hashTags": "list,of,tags", "locations": "list,of,locations", "phrases": "list,of,phrases", "earliestDate": "yyyyMMddHHmm", "latestDate": "yyyyMMddHHmm"}
+   request_data = json.loads(request.data)
 
-   # hashTags = request_data['hashTags'].split(",")
-   # locations = request_data['locations'].split(",")
-   # phrases = request_data['phrases'].split(",")
+   hashTags = request_data['hashTags'].split(",")
+   locations = request_data['locations'].split(",")
+   phrases = request_data['phrases'].split(",")
    earliestDate = None
    latestDate = None  
 
-   # if(request_data['earliestDate'] != "" and request_data['latestDate'] != ""):
-   #    earliestDate = request_data['earliestDate']
-   #    latestdate = request_data['latestDate']
+   if(request_data['earliestDate'] != "" and request_data['latestDate'] != ""):
+      earliestDate = request_data['earliestDate']
+      latestdate = request_data['latestDate']
 
-   # Prune input data for any empty strings listed.
-   # Set empty lists ([]) to None
+   # todo: Prune input data for any empty strings listed.
    # Set empty lists (['']) to None
+   # for x in hashTags:
+   #    if 
 
-   hashTags = ['']
-   locations = None
-   phrases = None
+   # Set empty lists ([]) to None
+   if (len(hashTags) <= 0):
+      hashTags = None
+   elif (len(locations) <= 0):
+      locations = None
+   elif (len(phrases) <= 0):
+      phrases = None
+   
 
    query = build_query(hashTags, locations, phrases)
-   scrape_tweet(query, earliestDate, latestDate)
+   scrape_tweet(query, None, None)
 
-   return 
+   return  jsonify({'result': 'Query Complete'})
 
 
 # #someone goes to /api/ any id, pass back that id
@@ -96,10 +120,6 @@ def delete():
    else:
       return jsonify({'result': 'OK User not deleted'})
 
-   print("entered delete function with id: " + str(id))
-   request_data = json.loads(request.data)
-   print (request_data)
-   UserDB.query.filter_by(id = request_data['id']).delete()
    db.session.commit()
    return { '204' : 'Deleted successfully' }
 
@@ -169,17 +189,3 @@ def loginUser():
 
 if __name__ == '__main__':
    app.run(debug = True)
-
-# Initialize the DB Model.
-# python3
-# from api import db
-# db.create_all ()
-
-# from api import Todo
-# user = UserDB(email = "a2a.a", password = "foo", first = "bar", last = "pie")
-# db.session.add(user)
-# db.session.commit()
-
-# second_user = UserDB(email = "b2b.b", password = "oof", first = "rab", last = "eip")
-# db.session.add(second_user)
-# db.session.commit()
