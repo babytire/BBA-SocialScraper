@@ -4,6 +4,7 @@ import SearchCriteriaInput from './SearchCriteriaInput';
 import SearchCriteriaDate from './SearchCriteriaDate';
 import './css/SearchCriteriaPage.css'
 import HomeButton from './HomeButton';
+import { Link } from 'react-router-dom';
 
 export default class SearchCriteriaPage extends Component {
     constructor(props){
@@ -44,18 +45,18 @@ export default class SearchCriteriaPage extends Component {
         return (
             <div className="searchCriteriaPageContainer">
                 <div className="searchPlatformSelectionTitleContainer">
-                    <text className="searchPlatformSelectionTitle">
+                    <label className="searchPlatformSelectionTitle">
                         Search Platform Selection
-                    </text>
+                    </label>
                 </div>
                 <div className="searchCriteriaPlatformSelectionContainer">
                     <div className="platformSearchContentContainer">
                         <div className="platformSelectionContainer">
                             <HomeButton className="homeButton"></HomeButton>
                         <SettingsButton className="settingsButton"></SettingsButton>
-                            <text className="platformLabel">
+                            <label className="platformLabel">
                                 Platform:
-                            </text>
+                            </label>
                             <select className="platformSelector">
                                 <option value={this.state.platformSelector}>Select</option>
                                 <option value={this.state.platformSelector}>Twitter</option>
@@ -63,9 +64,9 @@ export default class SearchCriteriaPage extends Component {
                             </select>
                         </div>
                         <div className="searchTypeSelectionContainer">
-                            <text className="searchTypeLabel">
+                            <label className="searchTypeLabel">
                                 Search Type:
-                            </text>
+                            </label>
                             <select className="searchTypeSelector">
                                 <option value={this.state.searchType}>Basic</option>
                                 <option value={this.state.searchType}>Advanced</option>
@@ -74,9 +75,9 @@ export default class SearchCriteriaPage extends Component {
                     </div>
                     <div className="searchCriteriaFormContentContainer">
                         <div className="searchCriteriaFormLabelContainer">
-                            <text className="searchCriteriaFormLabel">
+                            <label className="searchCriteriaFormLabel">
                                 Search Criteria
-                            </text>
+                            </label>
                         </div>
                         <div className="searchCriteriaFormContainer">
                             <div className="searchByContainer">
@@ -136,11 +137,11 @@ export default class SearchCriteriaPage extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="searchButtonContainer">
+                <Link to='SearchingPage' className="searchButtonContainer">
                     <button className="searchButton">
                         Search
                     </button>
-                </div>
+                </Link>
             </div>
         )
     }

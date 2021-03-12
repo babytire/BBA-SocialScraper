@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchingDataContent from './SearchingDataContent';
 import SettingsButton from './SettingsButton';
 import './css/SearchingPage.css'
+import { Link } from 'react-router-dom';
 
 export default class SearchingPage extends Component {
     constructor(props){
@@ -50,12 +51,16 @@ export default class SearchingPage extends Component {
                     </div>
                 </div>
                 <div className="searchingButtonsContainer">
-                    <button className="searchingEndButton" onClick={this.handleEndSearch}>
-                        End Search
-                    </button>
-                    <button className="searchingNewButton" onClick={this.handleNewSearch}>
-                        New Search
-                    </button>
+                    <Link to='/HomePage'>
+                        <button className="searchingEndButton" onClick={this.handleEndSearch}>
+                            End Search
+                        </button>
+                    </Link>
+                    <Link to='/SearchCriteriaPage'>
+                        <button className="searchingNewButton" onClick={this.handleNewSearch}>
+                            New Search
+                        </button>
+                    </Link>
                 </div>
             </div>
         )

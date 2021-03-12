@@ -1,27 +1,10 @@
 import React, { Component } from 'react'
 import SettingsButton from './SettingsButton'
 import './css/HomePage.css'
+import { Link } from 'react-router-dom'
 
 export default class HomePage extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            title: '',
-        };
 
-        this.handleNewSearch = this.handleNewSearch.bind(this);
-        this.handleCurrentSearches = this.handleCurrentSearches.bind(this);
-    }
-
-    handleNewSearch(){
-        console.log("newSearch");
-        return;
-    }
-
-    handleCurrentSearches(){
-        return;
-    }
-    
     render() {
         return (
             <div className="homePageContent">
@@ -39,12 +22,12 @@ export default class HomePage extends Component {
                             Test
                         </div>
                         <div className="buttonContainer">
-                            <div className="newSearchContainer">
-                                <button className="newSearchButton" onClick={this.handleNewSearch}>
+                            <Link to='/SearchCriteriaPage' className="newSearchContainer">
+                                <button className="newSearchButton">
                                     New Search
                                 </button>
-                            </div>
-                            <div className="currentSearchesContainer" onClick={this.handleCurrentSearches}>
+                            </Link>
+                            <div className="currentSearchesContainer">
                                 <button className="currentSearchesButton">
                                     Current Searches
                                 </button>

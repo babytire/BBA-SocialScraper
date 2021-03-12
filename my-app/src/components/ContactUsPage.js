@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import './css/ContactUsPage.css'
 
 export default class ContactUsPage extends Component {
@@ -28,19 +29,14 @@ export default class ContactUsPage extends Component {
 
     handleCreate(event){
     }
-
-	handleGoBack(event){
-
-	}
-
 	
 	render() {
 		return (
 			<div className="contactUsPageContent">
 				<div className="contactUsPageTitleContainer">
-					<text classname="contactUsPageTitle">
+					<label classname="contactUsPageTitle">
 						{this.props.title}
-					</text>
+					</label>
 				</div>
 
 				<div className="contactUsPageContainer">
@@ -65,8 +61,10 @@ export default class ContactUsPage extends Component {
 						</div>
 					</div>
 					<div className="buttonContainer">
-							<button onClick={this.handleGoBack} className="goBackButton">Go Back</button>
-							<button onClick={this.handleSubmit} className="submitButton">Submit</button>
+						<Link to='/LoginPage'>
+							<button className="goBackButton">Go Back</button>
+						</Link>
+						<button onClick={this.handleSubmit} className="submitButton">Submit</button>
 					</div>
 				</div>
 			</div>

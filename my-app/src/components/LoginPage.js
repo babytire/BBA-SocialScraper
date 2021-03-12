@@ -62,21 +62,17 @@ export default class LoginPage extends Component {
     }
 
     render() {
-        const { redirect } = this.state.redirect;
-        if (redirect) {
-            return (<Redirect to="/HomePage"/>);
-        }
         return (
         
         <div className="loginPageContent">
             <div className="loginPageTitleContainer">
-                <text className="loginPageTitle">
+                <label className="loginPageTitle">
                     {this.props.title}
-                </text>
+                </label>
             </div>
             <div className="loginPageContainer">
                 <div className="contactUsContainer">
-                    <Link to='/ContactUs'>
+                    <Link to='/ContactUsPage'>
                         <button className="contactUsButton">Contact Us</button>
                     </Link>
                 </div>
@@ -86,7 +82,7 @@ export default class LoginPage extends Component {
                         <input type="password" value={this.state.password} placeholder="Password" onChange={this.handlePasswordChange} className="passwordInputBox" />
                         <input type="button" value="Forgot Password" className="forgotPasswordButton" />
                         <Link to={this.state.link}>
-                            <input type="submit" value="Login" className="loginButton" onClick={this.handleLogin} />
+                            <input type="submit" value="Login" className="loginButton" />
                         </Link>
                     </form>
                 </div>
