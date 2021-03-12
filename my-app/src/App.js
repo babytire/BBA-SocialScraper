@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css'
 import LoginPage from './components/LoginPage'
-import SearchCriteriaPage from './components/SearchCriteriaPage.js'
+import SearchCriteriaPage from './components/SearchCriteriaPage'
 import SearchingPage from './components/SearchingPage';
 import HomePage from './components/HomePage'
 import SettingsPage from './components/SettingsPage'
@@ -25,6 +25,9 @@ function App() {
           </Route>
           <Route exact path = '/SearchCriteriaPage'>
             <SearchCriteriaPage title = 'Search Criteria' />
+          </Route>
+          <Route exact path = '/SearchingPage'>
+            <SearchingPage title = 'Searching' />
           </Route>
           <Route exact path = '/SettingsPage'>
             <SettingsPage title = 'Settings' />

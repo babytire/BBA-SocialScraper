@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './css/SettingsPage.css'
+import HomeButton from './HomeButton'
+import { Link } from 'react-router-dom'
 
 export default class SettingsPage extends Component {
 	constructor(props){
@@ -12,8 +14,7 @@ export default class SettingsPage extends Component {
 			saved: false,
 			scrapeHistoryToggle: false,
 			advancedSearchToggle: false,
-			emailNotifToggle: false,
-			title: 'Settings'
+			emailNotifToggle: false
 		};
 
 		const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$$/;
@@ -49,25 +50,25 @@ export default class SettingsPage extends Component {
 		return(
 			<div className="adminSettingsPageContent">
 				<div className="settingsPageTitleContainer">
-					<text className="contactUsPageTitle">
+					<label className="contactUsPageTitle">
 						{this.props.title}
-					</text>
+					</label>
 				</div>
 
 				<div className="settingsPageContainer">
 					<div className="homeButtonContainer">
-						<button className="homeButton">Home</button>
+						<HomeButton></HomeButton>
 					</div>
 					<div className="secondRowContainer">
 						<div className="emailDownloadContainer">
 							<form className="emailDownloadForm">
 								<div className="formContainer">
 									<div className="emailContainer">
-										<text className="emailText">Email: </text>
+										<label className="emailText">Email: </label>
 										<input type="email" className="emailInputBox" placeholder="first.last@email.com"></input>
 									</div>
 									<div className="downloadContainer">
-										<text className="downloadText">Download Location: </text>
+										<label className="downloadText">Download Location: </label>
 										<input type="text" className="downloadLocationBox" placeholder="C:/Downloads"></input>
 									</div>
 								</div>
@@ -87,16 +88,16 @@ export default class SettingsPage extends Component {
 					</div>
 					
 					<div className="bottomButtonsContainer">
-						<div className="logoutButtonContainer">
+						<Link to='/LoginPage' className="logoutButtonContainer">
 							<button className="logoutButton">Logout</button>
-						</div>
-						<div className="topButtonsContainer">
+						</Link>
+						<Link to='/LoginPage' className="topButtonsContainer">
 							<button className="deactivateAccountButton">Deactivate Account</button>
-						</div>
+						</Link>
 					</div>
-					<div className="saveChangesButtonContainer">
-							<button className="saveChangesButton">Save Changes</button>
-						</div>
+					<Link to='/HomePage' className="saveChangesButtonContainer">
+						<button className="saveChangesButton">Save Changes</button>
+					</Link>
 				</div>
 			</div>
 		)

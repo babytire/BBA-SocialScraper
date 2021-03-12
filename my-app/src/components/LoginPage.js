@@ -10,7 +10,7 @@ export default class LoginPage extends Component {
             password: '',
             submitted: false,
             title: 'Scraper Log In',
-            link: true
+            link: '/HomePage'
         };
 
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$$/;
@@ -21,19 +21,6 @@ export default class LoginPage extends Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
-    // const [todo, setTodo] = useState([]);
-    // const [addTodo, setAddTodo] = useState('');
- 
-    // useEffect() {
-    //    fetch('/api/loginClicked')
-    //     .then(response => {
-    //       if(response.ok){
-    //          return response.json()
-    //       }
-    //     })
-    //     // }).then(data => setTodo(data))// }).then(data=>console.log(data))
-    // }
-
     // const LinkToHome = ({ children, to, condition }) => (!!condition && to)
     // ? <Link to={to}>{children}</Link>
     // : <>{children}</>;
