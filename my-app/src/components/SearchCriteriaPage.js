@@ -51,7 +51,9 @@ export default class SearchCriteriaPage extends Component {
             body: JSON.stringify({
                 hashTags: this.state.hashTags,
                 locations: this.state.locations,
-                phrases: this.state.phrases
+                phrases: this.state.phrases,
+                earliestDate: '',
+                latestDate: ''
             })
         })
         .then(() => {

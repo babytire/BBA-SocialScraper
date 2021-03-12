@@ -51,6 +51,7 @@ def scrape_tweet(query,count=50,earliest=None,latest=None):
     ##### Setup ends #####
 
     # Call to api made here
+    print(query)
     tweets = api.search_full_archive('dev',query=query,maxResults=count,fromDate=earliest,toDate=latest)
 
     for i in range(len(tweets)):
