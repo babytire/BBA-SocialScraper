@@ -52,9 +52,9 @@ def scrapeInstagram():
 @app.route('/api/scrapeTwitter/', methods=['GET', 'POST'])
 def scrapeTwitter():
    # Get the user information. All lists are comma-serparated. JSON body: {"hashTags": "list,of,tags", "locations": "list,of,locations", "phrases": "list,of,phrases", "earliestDate": "yyyyMMddHHmm", "latestDate": "yyyyMMddHHmm"}
-   # request_data = json.loads(request.data)
+   request_data = json.loads(request.data)
 
-   # hashTags = request_data['hashTags'].split(",")
+   hashTags = request_data['hashTags'].split(",")
    # locations = request_data['locations'].split(",")
    # phrases = request_data['phrases'].split(",")
    earliestDate = None
@@ -67,8 +67,8 @@ def scrapeTwitter():
    # Prune input data for any empty strings listed.
    # Set empty lists ([]) to None
    # Set empty lists (['']) to None
-
-   hashTags = ['']
+   
+   # hashTags = ['']
    locations = None
    phrases = None
 

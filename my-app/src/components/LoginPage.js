@@ -9,7 +9,6 @@ export default class LoginPage extends Component {
             email: '',
             password: '',
             submitted: false,
-            title: 'Scraper Log In',
             link: '/HomePage'
         };
 

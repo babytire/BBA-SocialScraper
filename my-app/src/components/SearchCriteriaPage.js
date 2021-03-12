@@ -24,6 +24,7 @@ export default class SearchCriteriaPage extends Component {
         this.handlePhrasesInput = this.handlePhrasesInput.bind(this);
         this.handleStartDateInput = this.handleStartDateInput.bind(this);
         this.handleEndDateInput = this.handleEndDateInput.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     handleHashTagsInput(newHashTags){
@@ -40,6 +41,30 @@ export default class SearchCriteriaPage extends Component {
     }
     handleEndDateInput(newEndDate){
         this.setState({endDate: newEndDate});
+    }
+
+    handleSearch(event){
+        const fetchUrl = '/api/scrapeTwitter/';
+
+        fetch(fetchUrl, {
+            method: 'POST',
+            body: JSON.stringify({
+                hashTags: this.state.hashTags,
+                locations: this.state.locations,
+                phrases: this.state.phrases
+            })
+        })
+        .then(() => {
+            console.log(JSON.stringify({
+                hashTags: this.state.hashTags,
+                locations: this.state.locations,
+                phrases: this.state.phrases
+            }))
+            return (
+                <Link to='/SearchingPage'></Link>
+            )
+            }
+        )
     }
     render() {
         return (
@@ -137,11 +162,11 @@ export default class SearchCriteriaPage extends Component {
                         </div>
                     </div>
                 </div>
-                <Link to='SearchingPage' className="searchButtonContainer">
-                    <button className="searchButton">
+                {/* <Link to='SearchingPage' className="searchButtonContainer"> */}
+                    <button className="searchButton" onClick={this.handleSearch}>
                         Search
                     </button>
-                </Link>
+                {/* </Link> */}
             </div>
         )
     }
