@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './css/LoginPage.css'
-import { Link } from 'react-router-dom'
+import { Link, Redirect, withRouter, useHistory } from 'react-router-dom'
 
 export default class LoginPage extends Component {
     constructor(props){
@@ -14,8 +14,6 @@ export default class LoginPage extends Component {
         };
 
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$$/;
-        const homePage = '/HomePage'
-        const loginPage = '/LoginPage'
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -64,6 +62,10 @@ export default class LoginPage extends Component {
     }
 
     render() {
+        const { redirect } = this.state.redirect;
+        if (redirect) {
+            return (<Redirect to="/HomePage"/>);
+        }
         return (
         
         <div className="loginPageContent">

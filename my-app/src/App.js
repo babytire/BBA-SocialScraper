@@ -5,6 +5,9 @@ import SearchCriteriaPage from './components/SearchCriteriaPage'
 import SearchingPage from './components/SearchingPage';
 import HomePage from './components/HomePage'
 import SettingsPage from './components/SettingsPage'
+import ContactUsPage from './components/ContactUsPage'
+
+// Imports from react-router
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +34,8 @@ function App() {
           </Route>
           <Route exact path = '/SettingsPage'>
             <SettingsPage title = 'Settings' />
+          <Route exact path = '/ContactUsPage'>
+            <ContactUsPage title='Contact Us'></ContactUsPage>
           </Route>
         </Switch>
       </Router>
