@@ -10,7 +10,7 @@ export default class LoginPage extends Component {
             password: '',
             submitted: false,
             title: 'Scraper Log In',
-            link: ''
+            link: true
         };
 
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$$/;
@@ -20,7 +20,6 @@ export default class LoginPage extends Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        this.handleCreate = this.handleCreate.bind(this);
     }
     // const [todo, setTodo] = useState([]);
     // const [addTodo, setAddTodo] = useState('');
@@ -35,26 +34,41 @@ export default class LoginPage extends Component {
     //     // }).then(data => setTodo(data))// }).then(data=>console.log(data))
     // }
 
+    // const LinkToHome = ({ children, to, condition }) => (!!condition && to)
+    // ? <Link to={to}>{children}</Link>
+    // : <>{children}</>;
+
     handleLogin(event){
-        const fetchUrl = `/api/loginClicked/`
-        
+        const fetchUrl = '/api/loginClicked/';
+
         fetch(fetchUrl, {
             method: 'POST',
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password
             })
-        }).then(response => response.json())
-          .then(data => {
-                if(data == true) 
-                    { this.setState({ link : '/HomePage' }); }
-                else 
-                    { this.setState({ link : '/LoginPage' }); }
-                })
-        event.preventDefault();
+        })
+        .then((response) => response.json())
+        .then(function(data) {
+            if(data.result == 'OK')
+                {
+                // Redirect them to the Homepage
+                console.log("Redirecting to HomePage");
+                this.setState({link: true});
+                }
+            else
+                {
+                // Redirect them to the LoginPage
+                console.log("Redirecting to LoginPage");
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+            event.preventDefault();
     }
 
-    handleEmailChange(event){
+   handleEmailChange(event){
         this.setState({email: event.target.value});
     }
 
@@ -62,23 +76,20 @@ export default class LoginPage extends Component {
         this.setState({password: event.target.value});
     }
 
-    handleCreate(event){
-
-    }
-
     render() {
         return (
-        // <div className="loginPageContent">
-        //     <div className="loginPageTitleContainer">
-        //         {/* <text className="loginPageTitle">
-        //             {this.props.title}
-        //         </text> */}
-        //     </div>
-            
-        // </div>
+        
+        <div className="loginPageContent">
+            <div className="loginPageTitleContainer">
+                <text className="loginPageTitle">
+                    {this.props.title}
+                </text>
+            </div>
             <div className="loginPageContainer">
                 <div className="contactUsContainer">
-                    <button onClick={this.handleContactUs} className="contactUsButton">Contact Us</button>
+                    <Link to='/ContactUs'>
+                        <button className="contactUsButton">Contact Us</button>
+                    </Link>
                 </div>
                 <div className="loginFormContainer">
                     <form className="loginForm">
@@ -90,10 +101,11 @@ export default class LoginPage extends Component {
                         </Link>
                     </form>
                 </div>
-                <div className="createContainer">
-                    <button onClick={this.handleCreate} className="createButton">Create</button>
-                </div>
+                <Link to='/RegisterAccount' className="createContainer">
+                    <button className="createButton">Create</button>
+                </Link>
             </div>
+        </div>
         )
     }
 }

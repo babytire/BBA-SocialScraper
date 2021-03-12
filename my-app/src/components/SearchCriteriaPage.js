@@ -3,6 +3,7 @@ import SettingsButton from './SettingsButton';
 import SearchCriteriaInput from './SearchCriteriaInput';
 import SearchCriteriaDate from './SearchCriteriaDate';
 import './css/SearchCriteriaPage.css'
+import HomeButton from './HomeButton';
 
 export default class SearchCriteriaPage extends Component {
     constructor(props){
@@ -50,6 +51,7 @@ export default class SearchCriteriaPage extends Component {
                 <div className="searchCriteriaPlatformSelectionContainer">
                     <div className="platformSearchContentContainer">
                         <div className="platformSelectionContainer">
+                            <HomeButton className="homeButton"></HomeButton>
                         <SettingsButton className="settingsButton"></SettingsButton>
                             <text className="platformLabel">
                                 Platform:
