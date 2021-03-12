@@ -6,6 +6,7 @@ import SearchingPage from './components/SearchingPage';
 import HomePage from './components/HomePage'
 import SettingsPage from './components/SettingsPage'
 import ContactUsPage from './components/ContactUsPage'
+//Test
 
 // Imports from react-router
 import {
