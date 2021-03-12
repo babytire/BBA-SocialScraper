@@ -6,8 +6,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css'
-import { TodoPage } from './Pages/TodoPage'
-import { Show } from './Pages/Show'
 import LoginPage from './components/LoginPage'
 import SearchCriteriaPage from './components/SearchCriteriaPage.js'
 import SearchingPage from './components/SearchingPage';
