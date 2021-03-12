@@ -1,8 +1,3 @@
-.settingsButtonContainer{
-    display: flex;
-    position:fixed;
-}
-
 .settingsButton{
     font-family: Arial Black;
     font-style: normal;
@@ -12,16 +7,11 @@
     border: none;
     align-items: center;
     text-align: center;
+    display: flex;
 }
 .settingsButtonText{
     padding-right: 15px;
 }
-
-.settingsIcon{
-    position: relative;
-    top: 25%;
-}
-
 .settingsButtonContainer:hover .settingsIcon{
     animation: settingsIconSpin infinite 10s linear;
 }

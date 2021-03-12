@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SettingsButton from './SettingsButton'
 import './css/HomePage.css'
 import { Link } from 'react-router-dom'
+import NavButtons from './NavButtons'
 
 export default class HomePage extends Component {
 
@@ -13,11 +14,9 @@ export default class HomePage extends Component {
                         {this.props.title}
                     </text>
                 </div>
-                <div className="homeSettingsContainer">
-                    <SettingsButton className="homeSettingsButton"></SettingsButton>
-                </div>
                 <div className="homePageContainer">
                     
+                <SettingsButton className="homeSettingsButton"></SettingsButton>
                     
                     <div className="homePageContentContainer">
                         <div className="previousSearchContainer">

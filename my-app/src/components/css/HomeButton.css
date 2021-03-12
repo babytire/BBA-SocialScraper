@@ -1,25 +1,15 @@
-.homeButtonContainer{
-    width: 150px;
-    height: 50px;
-}
-
 .homeButton{
     font-family: Arial Black;
     font-style: normal;
     font-weight: 900;
     font-size: 18px;
-    width: inherit;
-    height: inherit;
+    /* width: inherit;
+    height: inherit; */
     background: none;
     border: none;
     align-items: center;
     text-align: center;
 }
-.homeIcon{
-    position: relative;
-    top: 25%;
-}
-
 .homeButtonContainer:hover .homeButton{
     transform: scale(1.1);
 }

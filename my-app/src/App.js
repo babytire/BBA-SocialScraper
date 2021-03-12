@@ -15,6 +15,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import NavButtons from './components/NavButtons';
 
 function App() {
   return (
