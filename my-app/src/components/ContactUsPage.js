@@ -27,7 +27,6 @@ export default class ContactUsPage extends Component {
     }
 
     handleCreate(event){
-
     }
 
 	handleGoBack(event){
