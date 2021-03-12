@@ -35,6 +35,7 @@ function App() {
           </Route>
           <Route exact path = '/SettingsPage'>
             <SettingsPage title = 'Settings' />
+          </Route>
           <Route exact path = '/ContactUsPage'>
             <ContactUsPage title='Contact Us'></ContactUsPage>
           </Route>
