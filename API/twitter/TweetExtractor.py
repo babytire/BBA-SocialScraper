@@ -127,7 +127,7 @@ def build_query (hashtags=None, locations=None, phrases=None):
 
     query = ""
 
-    if (hashtags != None):
+    if (hashtags != None and hashtags != [""]):
         query = query + "("
         for tag in hashtags:
             old_tag = tag
@@ -138,7 +138,7 @@ def build_query (hashtags=None, locations=None, phrases=None):
             else:
                 query = query + tag + " OR " 
         
-    if (locations != None):
+    if (locations != None and locations != [""]):
         query = query + "("
         for loc in locations:
             old_loc = loc
@@ -149,7 +149,7 @@ def build_query (hashtags=None, locations=None, phrases=None):
             else:
                 query = query + "place:" + loc + " OR " 
 
-    if (phrases != None):
+    if (phrases != None and phrases != [""]):
         query = query + "("
         for phrase in phrases:
             old_phrase = phrase
