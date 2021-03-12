@@ -1,7 +1,7 @@
 import threading
 import csv
 import os
-from instascrape import Post, exceptions
+#from instascrape import Post, exceptions
 from heady import headers
 from queue import Queue
 from time import sleep
