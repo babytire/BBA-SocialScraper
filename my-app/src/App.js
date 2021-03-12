@@ -21,22 +21,20 @@ import {
 function App() {
   return (
     <div className="App">
-      {/* <HomePage title={"Home Page"}></HomePage> */}
-      {/* <LoginPage title={"Scraper Log In"}></LoginPage> */}
       <Router>
         <Switch>
-          {/* <Route exact path='/'>
-            <TodoPage/>
-          </Route> */}
           <Route exact path = '/LoginPage'>
-            <LoginPage title = {"Scrape Log In"}/>
+            <LoginPage title = 'Log In' />
           </Route>
           <Route exact path = '/HomePage'>
-            <HomePage title = {"Scraper Landing Page"}/>
+            <HomePage title = 'HomePage' />
           </Route>
-          {/* <Route exact path='/:id'>
-            <Show/>
-          </Route> */}
+          <Route exact path = '/SearchCriteriaPage'>
+            <SearchCriteriaPage title = 'Search Criteria' />
+          </Route>
+          <Route exact path = '/SettingsPage'>
+            <SettingsPage title = 'Settings' />
+          </Route>
         </Switch>
       </Router>
       {/* <header className="App-header">

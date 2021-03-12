@@ -1,26 +1,18 @@
 import React, { Component } from 'react'
 import './css/SettingsButton.css'
 import settingsIcon from './settingsIcon.svg'
+import { Link } from 'react-router-dom'
 
 export default class SettingsButton extends Component {
-    constructor(props){
-        super(props);
-
-        this.handleSettings = this.handleSettings.bind(this);
-    }
-
-    handleSettings(){
-        // set page to settings page
-        return;
-    }
+    
     render() {
         return (
-            <div className="settingsButtonContainer" onClick={this.handleSettings}>
+            <Link to='/SettingsPage' className="settingsButtonContainer">
                 <button className="settingsButton">
                     <text className="settingsButtonText">Settings</text>
                     <img src={settingsIcon} className="settingsIcon" />
                 </button>
-            </div>
+            </Link>
         )
     }
 }
