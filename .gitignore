@@ -6,7 +6,7 @@ API/__pycache__
 API/example.db
 API/example.db
 __pycache__
-Tokens.py
+TwitterConfig.py
 heady.py
 *.jpg
 *.png
