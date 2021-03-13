@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import re
-from heady import insta_username, insta_password, path_to_driver,headers
+from InstagramConfig import s_insta_username, s_insta_password, s_path_to_driver, d_headers
 
 
 
@@ -58,10 +58,10 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
     chrome_options.add_argument("--disable-gpu")
 
     #This useragent must be replaced with useragent specific to os and browser being worked with. 
-    chrome_options.add_argument(headers['user-agent'])
+    chrome_options.add_argument(d_headers['user-agent'])
 
     #Load Chromedriver
-    browser = webdriver.Chrome(executable_path = path_to_driver, options = chrome_options) #Replace with path to chromedriver.exe
+    browser = webdriver.Chrome(executable_path = s_path_to_driver, options = chrome_options) #Replace with path to chromedriver.exe
     browser.implicitly_wait(5)
 
     #Load and login to Instagram
@@ -72,8 +72,8 @@ def url_extractor(search, posts = 100, category = 'hashtag', category2 = None):
     username_input = browser.find_element(By.CSS_SELECTOR, "input[name='username']")
     password_input = browser.find_element(By.CSS_SELECTOR, "input[name='password']")
 
-    username_input.send_keys(insta_username) #Replace 'Username' with Instagram username
-    password_input.send_keys(insta_password) #Replace 'Password' with Instagram password
+    username_input.send_keys(s_insta_username) #Replace 'Username' with Instagram username
+    password_input.send_keys(s_insta_password) #Replace 'Password' with Instagram password
 
     login_button = browser.find_element_by_xpath("//button[@type='submit']")
     login_button.click()
