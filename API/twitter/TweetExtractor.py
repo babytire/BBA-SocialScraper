@@ -11,7 +11,8 @@ from TwitterConfig import s_consumer_key, s_consumer_secret_key, s_access_token,
 from datetime import datetime
 
 def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
-    """ Tweet scraper function, collects tweets from Twitter's API and scrapes 
+    """ 
+    Tweet scraper function, collects tweets from Twitter's API and scrapes 
     the text as well as the media of a tweet if it exists. Function results in a 
     zip archive containing a CSV file with scraped text along with a directory for 
     the media that was scraped. 
