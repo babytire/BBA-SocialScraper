@@ -1,3 +1,10 @@
+/*
+* Name: James West
+* Date Created: 03/05/2021
+* Version: 1.0
+* Description: The page that shows the details of a specific scrape that is currently being run.
+*/
+
 import React, { Component } from 'react'
 import SearchingDataContent from './SearchingDataContent';
 import SettingsButton from './SettingsButton';
@@ -8,7 +15,7 @@ export default class SearchingPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            scraped: '3200'
+            scraped: '3200'  // Number of units that the API has scraped
         }
         
         this.handleScrapeUpdate = this.handleScrapeUpdate.bind(this);
@@ -17,13 +24,31 @@ export default class SearchingPage extends Component {
     };
 
     handleScrapeUpdate(){
-        //Ever X seconds update
-        // fetch()
-        // .then(response => response.json())
-        // .then(data => this.setState({ scraped: data.scraped}))
+        // Ever X seconds update
+        const fetchUrl = '/api/scrapeCount/';
+
+        fetch(fetchUrl, {
+            method: 'GET',
+            body: JSON.stringify({
+                
+            })
+        })
+        .then(response => response.json())
+        .then (data => this.setState({ scraped: data.count }))
     }
 
     handleEndSearch(){
+
+        const fetchUrl = '/api/endScrapeAPI/';
+
+        fetch(fetchUrl, {
+            method: 'POST',
+            body: JSON.stringify({
+                endScrapeAPI: true
+            })
+        })
+        .then((response) => response.json())
+        .then (data => this.setState({ scraped: data.count }))
         
     }
     handleNewSearch(){
