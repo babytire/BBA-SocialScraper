@@ -18,7 +18,7 @@ db = SQLAlchemy(app)
 # from api import db
 # db.create_all ()
 
-# from api import Todo
+# from api import UserDB
 # user = UserDB(email = "a2a.a", password = "foo", first = "bar", last = "pie")
 # db.session.add(user)
 # db.session.commit()
@@ -62,16 +62,16 @@ def getEarlyLateRange():
 def scrapeInstagram():
    # Get the user information. JSON body: {"search_term": "hashtag/person/location", ""}
    request_data = json.loads(request.data)
-   url_extractor(request_data['search_term'], )
-
+   url_extractor(request_data['search_term'])
    pass
 
 # Make sure this isn't set to have GET with it as well.
-@app.route('/api/scrapeTwitter/', methods=['POST'])
+@app.route('/api/scrapeTwitter/', methods=['GET', 'POST'])
 def scrapeTwitter():
    # Get the user information. All lists are comma-serparated. JSON body: {"#hashTags": "list,of,tags", "locations": "list,of,locations", "phrases": "list,of,phrases", "earliestDate": "yyyyMMddHHmm", "latestDate": "yyyyMMddHHmm"}
    request_data = json.loads(request.data)
 
+   # Fix this so that we don't have .split(",")
    hashTags = request_data['hashTags'].split(",")
    hashTags = hashTags[0].split("#")
    hashTags.pop(0)
@@ -102,9 +102,9 @@ def scrapeTwitter():
       phrases = None
    
    query = build_query(hashTags, locations, phrases)
-   scrape_tweet(query, None, None)
+   scrape_tweet(query = query, earliest = earliestDate, latest = latestDate)
 
-   return  jsonify({'result': 'Query Complete'})
+   return jsonify({'result': 'Query Complete'})
 
 
 # #someone goes to /api/ any id, pass back that id
@@ -113,25 +113,27 @@ def scrapeTwitter():
 #    print ("This is the id: " + str(id))
 #    return jsonify([*map(user_serializer, UserDB.query.filter_by(id=id))])
 
+# Edit a user
+
 #InProgress
-@app.route('/api/deleteUser', methods=['POST'])
+@app.route('/api/deleteUser/', methods=['POST'])
 def delete():
    # Get the user information. JSON Body: {"email": "email@email.com"}
    request_data = json.loads(request.data)
 
    # Check to see if the user exists
    if(UserDB.query.filter_by(email = request_data['email']).delete()):
+      db.session.commit()
       return jsonify({'result': 'OK User deleted'})
    else:
-      return jsonify({'result': 'OK User not deleted'})
-
-   db.session.commit()
-   return { '204' : 'Deleted successfully' }
+      return jsonify({'result': 'NOK User not deleted'})
 
 # User creation is happening. Check to see if the email is already in use and if not,
 # Create a new user entry.
 @app.route('/api/createUser/', methods = ['POST'])
 def createUser():
+   # Make sure the user isn't already in the database.
+   
    # Get the user information. JSON Body: {"email": "email@email.com", "name": "First Last", "password": "password"}
    request_data = json.loads(request.data)
    
@@ -144,9 +146,9 @@ def createUser():
    # Special logic to split the name that is passed in.
    splitNames = request_data['name'].split(" ")
    if(len(splitNames) > 2):
-      return jsonify({'result': "NOK Too Few Names Passed In"})
-   elif(len(splitNames) < 2):
       return jsonify({'result': "NOK Too Many Names Passed In"})
+   elif(len(splitNames) < 2):
+      return jsonify({'result': "NOK Too Few Names Passed In"})
    else:
       inputFirstName = splitNames[0]
       inputLastName = splitNames[1]
@@ -176,6 +178,7 @@ def createUser():
 def loginUser():
    # Get the login information. JSON Body: {"email": "email@email.com", "password": "password"}
    request_data = json.loads(request.data)
+
    # Check if the information is within the database
    user = UserDB.query.filter_by(email = request_data['email'])
    if(user is not None):
