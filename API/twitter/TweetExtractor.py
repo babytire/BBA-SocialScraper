@@ -1,5 +1,5 @@
 """
-Created by: Griffin Fluet
+Created by: Griffin Fluet and Ryan Handlon
 Created on: Feb 2021
 Version: 1.0
 Description: This file contains two functions for scraping Twitter. One for 
@@ -98,76 +98,115 @@ def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
             'Link' : s_url
         })
 
-        #Checking for media in the tweet
+        #Checking for media in the extended_entities attribute of tweet object
+        #More info about the extended_entities attribute can be found here:
+        #https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/extended-entities
         if hasattr(l_tweets[i], "extended_entities"):
-            media_count = 1
-            #for all media in tweet
-            for photo in l_tweets[i].extended_entities["media"]:
-                #saving media link and file name
-                if (photo['type'] == "photo"):
-                    picture_name = f"{s_media_directory}pictureID#{str(i_tweet_id).zfill(5)}-{str(media_count)}.jpg"
-                    link = photo['media_url_https']
-                elif (photo['type'] == "video"):
-                    picture_name = f"{s_media_directory}videoID#{str(i_tweet_id).zfill(5)}-{str(media_count)}.mp4"
-                    link = photo['video_info']['variants'][0]['url']
-                elif (photo['type'] == "animated_gif"):
-                    picture_name = f"{s_media_directory}gifID#{str(i_tweet_id).zfill(5)}-{str(media_count)}.mp4"
-                    link = photo['video_info']['variants'][0]['url']
+            i_media_count = 1       #integer, used to index media names should the tweet object have more than one
+            #for each piece of media in extended entities
+            for o_media in l_tweets[i].extended_entities["media"]:
+                #build name media will be saved as
+                s_media_name = f"{s_media_directory}pictureID#{str(i_tweet_id).zfill(5)}-{str(i_media_count)}"
 
-                #download media
-                r = requests.get(link)
-                with open(picture_name, 'wb') as f:
-                    f.write(r.content)
+                #find media type, append the associated file type to end of s_media_name, and save link to media in s_media_link
+                if (o_media['type'] == "photo"):
+                    s_media_name = s_media_name + ".jpg"
+                    s_media_link = o_media['media_url_https']
+                elif (o_media['type'] == "video"):
+                    s_media_name = s_media_name + ".mp4"
+                    s_media_link = o_media['video_info']['variants'][0]['url']
+                elif (o_media['type'] == "animated_gif"):
+                    #gif's are saved as .mp4's because that's how twitter stores them, as shown in the extended_entities object link above
+                    s_media_name = s_media_name + ".mp4"
+                    s_media_link = o_media['video_info']['variants'][0]['url']
 
-                media_count += 1
+                #request s_media_link and download it's contents to s_media_name
+                o_request = requests.get(s_media_link)
+                with open(s_media_name, 'wb') as o_file:
+                    o_file.write(o_request.content)
+
+                i_media_count += 1
+
     # Zipping directory
     os.system(f'zip -rqq9 twitter_scrape_from_{s_now}.zip {s_now}')
     # Removing the directory
     os.system(f'rm -rf {s_now}') 
 
-def build_query (hashtags=None, locations=None, phrases=None):
-    """ Query builder function for calling Twitter's API. Returns a query built
-    from the parameters passed into it. 
+def s_build_query (l_hashtags=None, l_locations=None, l_phrases=None):
+    """ 
+    Query builder function, builds a query specifying the 
+    types of tweets wished to be returned when query is passed to 
+    a tweet search using the Twitter API. Function results in a 
+    string being returned that is the built query.
+    Info on query string being built can be found here:
+    https://developer.twitter.com/en/docs/labs/recent-search/guides/search-queries
+
+    No more than 10 total hashtags, locations, and phrases shuold be inputted.
 
     Arguments:
-    - hashtags - String array of hashtags, this is None by default.
-    - locations - String array of locations, this is None by default.
-    - phrases - String array of phrases, this is None by default.
+    - l_hashtags  - list   - a list of strings, the strings representing hashtags to be searched by
+                           - strings shuold be in the format of "#hashtag" or "hashtag" 
+                           - This is None by defalt
+    - l_locations - list   - a list of strings, the strings representing locations to be searched by
+                           - strings shuold be in the format of "New York" or ""New York"" 
+                           - This is None by defalt
+    - l_phrases   - list   - a list of strings, the strings representing phrases to be searched by
+                           - strings shuold be in the format of "I hate Mondays!" or ""I hate Mondays!"" 
+                           - This is None by defalt
 
+    Output: 
+    - s_query     - string - the query to be used to search tweets
+                           - final query will look like "(#hashtag OR #hashtag) ("location" OR "location") ("phrase" OR "phrase")"
+                    
     """
 
-    query = ""
+    s_query = ""      #String, holds query as it's being built
 
-    if (hashtags != None and hashtags != [""] and hashtags != []):
-        query = query + "("
-        for tag in hashtags:
-            old_tag = tag
-            if (tag.find("#") != 0):
-                tag = "#" + tag
-            if (hashtags.index(old_tag) == len(hashtags) - 1):
-                query = query + tag + ") "
+    #If there are hashtags to be added to query
+    if (l_hashtags != None and l_hashtags != [""] and l_hashtags != []):
+        s_query = s_query + "("
+        #iterate through each hashtag 
+        for s_tag in l_hashtags:
+            #store origional hashtag in case it needs do be formatted
+            s_old_tag = s_tag
+            #Add "#" in front of hashtag if not already there
+            if (s_tag.find("#") != 0):
+                s_tag = "#" + s_tag
+            #If last hashtag add hashtag + ")", else add hashtag + " OR"
+            if (l_hashtags.index(s_old_tag) == len(l_hashtags) - 1):
+                s_query = s_query + s_tag + ") "
             else:
-                query = query + tag + " OR " 
-    if (locations != None and locations != [""] and locations != []):
-        query = query + "("
-        for loc in locations:
-            old_loc = loc
-            if not(loc.startswith("\"") and loc.endswith("\"")):
-                loc = "\"" + loc + "\""
-            if (locations.index(old_loc) == len(locations) - 1):
-                query = query + "place:" + loc + ") "
-            else:
-                query = query + "place:" + loc + " OR " 
+                s_query = s_query + s_tag + " OR "
 
-    if (phrases != None and phrases != [""] and phrases != []):
-        query = query + "("
-        for phrase in phrases:
-            old_phrase = phrase
-            if not(phrase.startswith("\"") and phrase.endswith("\"")):
-                phrase = "\"" + phrase + "\""
-            if (phrases.index(old_phrase) == len(phrases) - 1):
-                query = query + phrase + ") "
+    #If there are locations to be added to query
+    if (l_locations != None and l_locations != [""] and l_locations != []):
+        s_query = s_query + "("
+        #iterate through each location 
+        for s_loc in l_locations:
+            s_old_loc = s_loc
+            #Surround locations in quotes if not already there
+            if not(s_loc.startswith("\"") and s_loc.endswith("\"")):
+                s_loc = "\"" + s_loc + "\""
+            #If last hashtag add hashtag + ")", else add hashtag + " OR"
+            if (l_locations.index(s_old_loc) == len(l_locations) - 1):
+                s_query = s_query + "place:" + s_loc + ") "
             else:
-                query = query + phrase + " OR " 
+                s_query = s_query + "place:" + s_loc + " OR " 
+
+    #If there are phrases to be added to query
+    if (l_phrases != None and l_phrases != [""] and l_phrases != []):
+        s_query = s_query + "("
+        #iterate through each phrase 
+        for s_phrase in l_phrases:
+            s_old_phrase = s_phrase
+            #Surround phrase in quotes if not already there
+            if not(s_phrase.startswith("\"") and s_phrase.endswith("\"")):
+                s_phrase = "\"" + s_phrase + "\""
+            #If last phrase add phrase + ")", else add phrase + " OR"
+            if (l_phrases.index(s_old_phrase) == len(l_phrases) - 1):
+                s_query = s_query + s_phrase + ") "
+            else:
+                s_query = s_query + s_phrase + " OR " 
     
-    return query
+    #return query
+    return s_query
