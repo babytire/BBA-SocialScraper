@@ -6,7 +6,7 @@ Description: This file contains two functions for scraping Twitter. One for
 building queries to pass into the api call. Another for making the call to the 
 api and scraping the data and getting to ready for archiving.
 """
-import csv, os, re, requests, threading, tweepy
+import csv, os, re, requests, threading, tweepy, xlsxwriter
 from TwitterConfig import s_consumer_key, s_consumer_secret_key, s_access_token, s_access_token_secret
 from datetime import datetime
 
@@ -120,8 +120,9 @@ def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
                     f.write(r.content)
 
                 media_count += 1
+    
     # Zipping directory
-    os.system(f'zip -rqq9 twitter_scrape_from_{s_now}.zip {s_now}')
+    os.system(f'zip -r -qq -9 twitter_scrape_from_{s_now}.zip {s_now}')
     # Removing the directory
     os.system(f'rm -rf {s_now}') 
 

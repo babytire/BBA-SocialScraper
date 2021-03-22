@@ -7,7 +7,7 @@ API/example.db
 API/example.db
 __pycache__
 TwitterConfig.py
-heady.py
+InstagramConfig.py
 *.jpg
 *.png
 output.txt
