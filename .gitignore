@@ -6,8 +6,8 @@ API/__pycache__
 API/example.db
 API/example.db
 __pycache__
-Tokens.py
-heady.py
+TwitterConfig.py
+InstagramConfig.py
 *.jpg
 *.png
 output.txt
