@@ -1,0 +1,92 @@
+.searchingContentContainer{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.searchingTitleContainer{
+    position: absolute;
+    top: 1vh;
+    left: 15vw;
+    box-sizing: content-box;
+    background-color: #FFFFFF;
+    z-index: 1;
+    width: 360px;
+    height: 30px;
+}
+.searchingTitle{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+}
+.searchingContent{
+    position: relative;
+    height: 85vh;
+    width: 95vw;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.searchingDataContent{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.searchingScrapeDataContent{
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    width: 35vw;
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+}
+.searchingButtonsContainer{
+    display: flex;
+    width: 100vw;
+    margin-top: 20px;
+    justify-content: space-evenly;
+}
+.searchingEndButton{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+    background: #EBEBEB;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 2px;
+    width: 200px;
+    height: 60px;
+    color: rgba(0, 0, 0, .4);
+    cursor: pointer;
+}
+.searchingNewButton{
+    font-family: Arial Black;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+    background: #0094FF;
+    border: 1px solid #0094FF;
+    box-sizing: border-box;
+    border-radius: 2px;
+    width: 200px;
+    height: 60px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.searchingEndButton:hover{
+    transform: scale(1.1);
+}
+.searchingNewButton:hover{
+    transform: scale(1.1);
+}

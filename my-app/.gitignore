@@ -4,12 +4,18 @@
 /node_modules
 /.pnp
 .pnp.js
+/API/__pycache__
+/API/__pycache__
 
 # testing
 /coverage
 
 # production
 /build
+
+# Install Files
+**/my-app/package.json
+**/my-app/package-lock.json
 
 # misc
 .DS_Store
