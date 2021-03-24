@@ -260,9 +260,26 @@ if __name__ == '__main__':
 #     PRIMARY KEY (id)
 # );
 
-# #someone goes to /api/ any id, pass back that id
-# @m_app.route('/api/<int:id>')
-# def show(id):
-#    print ("This is the id: " + str(id))
-#    return jsonify([*map(user_serializer, UserDB.query.filter_by(id=id))])
+#User is trying to login. Check to see if the email and password are correct.
+@app.route('/api/loginUser/', methods = ['POST'])
+def loginUser():
+   # Get the login information. JSON Body: {"email": "email@email.com", "password": "password"}
+   request_data = json.loads(request.data)
+   password = request_data['password']
+   # Check if the information is within the database
+   user = UserDB.query.filter_by(email = request_data['email'])
+   user.password = 'a'
+   if(user is not None):
+      # Check to see if the password is the empty
+      # password = user.password
+      if(password is not None):
+         # Check to see if the password matches the one in the DB
+         if(password == user.password):
+            return jsonify({'result': 'OK Email/Password Validated'})
+         else:
+            return jsonify({'result': 'NOK Email/Password Invalid'})
+      else:
+         return jsonify({'result': 'NOK Password Field Blank'})
+   else:
+      return jsonify({'result': 'NOK User Not Found'})
 
