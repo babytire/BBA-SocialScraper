@@ -122,5 +122,3 @@ def v_url_extractor(s_search, i_num_posts_wanted = 100, s_category = 'hashtag'):
     # Close f_frontier and O_browser
     f_frontier.close()
     o_browser.close()
-
-v_url_extractor("chocolate")
