@@ -5,9 +5,9 @@ import sys
 sys.path.insert(1, './twitter')
 from TweetExtractor import v_scrape_tweets, s_build_query
 
-# sys.path.insert(1, './instagram')
-# from InstagramKeywordURLExtractor import url_extractor
-# from PostExtractor import read_to_queue
+sys.path.insert(1, './instagram')
+from InstagramKeywordURLExtractor import v_url_extractor
+from PostExtractor import v_read_to_queue
 
 m_app = Flask(__name__)
 m_app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///userInfo.db"
@@ -70,12 +70,12 @@ def loginUser():
 
    # Need to add stronger checks here for valid passwordks. DO AFTER PRESENTATION
    # Check if the information is within the database
-   query = o_db.query(UserDB).filter(Users.email==inputEmail, Users.password==inputPassword)
-   return(str(query))
+   # query = o_db.query(UserDB).filter(Users.email==inputEmail, Users.password==inputPassword)
+   # return(str(query))
    user = o_db.session.query(UserDB.email).filter_by(email = inputEmail)
    if(user is not None):
       # Check to see if the password is the empty
-      password = o_db.session.query(UserDB.email).filter_by(email = inputEmail).password
+      password = o_db.session.query(UserDB.email).filter_by(email = inputEmail)
       if(inputPassword is not ""):
          # Check to see if the password matches the one in the DB
          if(password == user.password):
@@ -167,13 +167,19 @@ def edit():
 #
 #
 ################################################################################
+# DONE
+@m_app.route('/api/scrapeInstagram/', methods =['POST'])
+def scrapeInstagram():
+   # Get the user information. JSON body: {"search_term": "hashtag/person/location", "search_category": "hashtag or location"}
+   request_data = json.loads(request.data)
 
-# @m_app.route('/api/scrapeInstagram/', methods =['GET', 'POST'])
-# def scrapeInstagram():
-#    # Get the user information. JSON body: {"search_term": "hashtag/person/location", ""}
-#    request_data = json.loads(request.data)
-#    url_extractor(request_data['search_term'])
-#    pass
+   search_term = request_data['search_term']
+   search_category = request_data['search_category']
+
+   v_url_extractor(s_search = search_term, s_category = search_category)
+   v_read_to_queue()
+   return jsonify({'result': 'Instagram Query Complete'})
+
 
 ################################################################################
 #
@@ -184,7 +190,8 @@ def edit():
 ################################################################################
 
 # Make sure this isn't set to have GET with it as well.
-@m_app.route('/api/scrapeTwitter/', methods=['GET', 'POST'])
+# Done
+@m_app.route('/api/scrapeTwitter/', methods=['POST'])
 def scrapeTwitter():
    # Get the user information. All lists are comma-serparated. JSON body: {"#hashTags": "list,of,tags", "locations": "list,of,locations", "phrases": "list,of,phrases", "earliestDate": "yyyyMMddHHmm", "latestDate": "yyyyMMddHHmm"}
    request_data = json.loads(request.data)
@@ -206,11 +213,6 @@ def scrapeTwitter():
       earliestDate = request_data['earliestDate']
       latestdate = request_data['latestDate']
 
-   # todo: Prune input data for any empty strings listed.
-   # Set empty lists (['']) to None
-   # for x in hashTags:
-   #    if 
-
    # Set empty lists ([]) to None
    if (len(hashTags) <= 0):
       hashTags = None
@@ -218,11 +220,11 @@ def scrapeTwitter():
       locations = None
    elif (len(phrases) <= 0):
       phrases = None
-   
-   query = build_query(hashTags, locations, phrases)
-   scrape_tweet(query = query, earliest = earliestDate, latest = latestDate)
 
-   return jsonify({'result': 'Query Complete'})
+   query = s_build_query(hashTags, locations, phrases)
+   v_scrape_tweets(s_query = query, s_earliest = earliestDate, s_latest = latestDate)
+
+   return jsonify({'result': 'Twitter Query Complete'})
 
 # todo: Must return what date range the uses can select from so the calendar can be generated with that information.
 # todo: m_app.route to send email
@@ -248,10 +250,6 @@ if __name__ == '__main__':
 # from api import UserDB
 # user = UserDB(email = "a2a.a", password = "foo", first = "bar", last = "pie", admin = True, approved = True)
 # o_db.session.add(user)
-# o_db.session.commit()
-
-# second_user = UserDB(email = "b2b.b", password = "oof", first = "rab", last = "eip")
-# o_db.session.add(second_user)
 # o_db.session.commit()
 
 # ------------------------------------------------------------------------------
