@@ -24,7 +24,7 @@ export default class SearchingPage extends Component {
     };
 
     handleScrapeUpdate(){
-        // Ever X seconds update
+        // Every X time unit, update number of scrapes collected
         const fetchUrl = '/api/scrapeCount/';
 
         fetch(fetchUrl, {
@@ -33,12 +33,16 @@ export default class SearchingPage extends Component {
                 
             })
         })
+
+        //Get the response, and turn it into readable JSON
         .then(response => response.json())
+
+        //Set the state of scraped to the API's provided number of units scraped
         .then (data => this.setState({ scraped: data.count }))
     }
 
     handleEndSearch(){
-
+        //End the API call that initialized scraping data
         const fetchUrl = '/api/endScrapeAPI/';
 
         fetch(fetchUrl, {
@@ -47,9 +51,6 @@ export default class SearchingPage extends Component {
                 endScrapeAPI: true
             })
         })
-        .then((response) => response.json())
-        .then (data => this.setState({ scraped: data.count }))
-        
     }
     handleNewSearch(){
 

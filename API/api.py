@@ -176,11 +176,13 @@ def createUser():
 def loginUser():
    # Get the login information. JSON Body: {"email": "email@email.com", "password": "password"}
    request_data = json.loads(request.data)
+   password = request_data['password']
    # Check if the information is within the database
    user = UserDB.query.filter_by(email = request_data['email'])
+   user.password = 'a'
    if(user is not None):
       # Check to see if the password is the empty
-      password = user.password
+      # password = user.password
       if(password is not None):
          # Check to see if the password matches the one in the DB
          if(password == user.password):
