@@ -62,7 +62,8 @@ def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
     # Need to pass in the developer environment here to gain access to full archive
     # You can find more about the developer environment on the developer portal:
     # https://developer.twitter.com/en
-    l_tweets = o_api.search_full_archive('dev',query=s_query,maxResults=i_count,fromDate=s_earliest,toDate=s_latest)
+    l_tweets = o_api.search(q=s_query,count=i_count)
+    #l_tweets = o_api.search_full_archive('dev',query=s_query,maxResults=i_count,fromDate=s_earliest,toDate=s_latest)
     
     # Using i as the iterative loop value and tweet id
     for i in range(len(l_tweets)):
