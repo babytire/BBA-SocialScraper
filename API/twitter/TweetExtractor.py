@@ -62,7 +62,7 @@ def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
     # Need to pass in the developer environment here to gain access to full archive
     # You can find more about the developer environment on the developer portal:
     # https://developer.twitter.com/en
-    l_tweets = o_api.search_full_archive('dev',query=s_query,maxResults=i_count,fromDate=s_earliest,toDate=s_latest)
+    l_tweets = o_api.search_full_archive('dev',query=s_query,maxResults=i_count,fromDate=s_earliest,toDate=s_latest, tweet_mode = 'extended')
     
     # Using i as the iterative loop value and tweet id
     for i in range(len(l_tweets)):
@@ -71,7 +71,7 @@ def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
         s_created_at = l_tweets[i].created_at
         s_username = l_tweets[i].user.name
         s_screen_name = l_tweets[i].user.screen_name
-        s_text = l_tweets[i].text
+        s_text = l_tweets[i].full_text
         i_reply_count = l_tweets[i].reply_count
         i_retweet_count = l_tweets[i].retweet_count
         i_likes = l_tweets[i].favorite_count
@@ -101,6 +101,11 @@ def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
         # Checking for media in the extended_entities attribute of tweet object
         # More info about the extended_entities attribute can be found here:
         # https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/extended-entities
+
+        # If retweet, set tweet equal to original tweet. This is because the retweeted tweet does not store media, but the original does
+        if hasattr(o_tweet, "retweeted_status"):
+            o_tweet = o_tweet.retweeted_status
+
         if hasattr(l_tweets[i], "extended_entities"):
             i_media_count = 1       # Integer, used to index media names should the tweet object have more than one
             # For each piece of media in extended entities
@@ -114,7 +119,7 @@ def v_scrape_tweets(s_query, i_count=50, s_earliest=None, s_latest=None):
                     s_media_link = o_media['video_info']['variants'][0]['url']
                 elif (o_media['type'] == "animated_gif"):
                     # Gif's are saved as .mp4's because that's how twitter stores them, as shown in the extended_entities object link above
-                    s_media_name = f"{s_media_directory}gifID#{str(i_tweet_id).zfill(5)}-{str(i_media_count)}.jpg"
+                    s_media_name = f"{s_media_directory}gifID#{str(i_tweet_id).zfill(5)}-{str(i_media_count)}.mp4"
                     s_media_link = o_media['video_info']['variants'][0]['url']
 
                 # Request s_media_link and download it's contents to s_media_name

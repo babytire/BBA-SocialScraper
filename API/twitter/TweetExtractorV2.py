@@ -33,7 +33,7 @@ def v_query_api(s_query,o_scrape_helper):
     """
     i_file_count = 0
     os.makedirs(o_scrape_helper.s_pickle_directory,exist_ok = True)
-    for o_page in tweepy.Cursor(o_scrape_helper.o_api.search,q=s_query).pages(3):
+    for o_page in tweepy.Cursor(o_scrape_helper.o_api.search,q=s_query, tweet_mode = 'extended').pages(3):
         pickle.dump(o_page, open(f'{o_scrape_helper.s_pickle_directory}pickle{i_file_count}.p', 'wb'))
         i_file_count += 1
     v_scrape_tweets(i_file_count,o_scrape_helper)
@@ -73,7 +73,7 @@ def v_scrape_tweets(i_pickles,o_scrape_helper):
             s_created_at = o_tweet.created_at
             s_username = o_tweet.user.name
             s_screen_name = o_tweet.user.screen_name
-            s_text = o_tweet.text
+            s_text = o_tweet.full_text
             i_reply_count = 'na'
             #i_reply_count = tweet.reply_count
             i_retweet_count = 'na'
@@ -105,6 +105,11 @@ def v_scrape_tweets(i_pickles,o_scrape_helper):
             # Checking for media in the extended_entities attribute of tweet object
             # More info about the extended_entities attribute can be found here:
             # https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/extended-entities
+
+            # If retweet, set tweet equal to original tweet. This is because the retweeted tweet does not store media, but the original does
+            if hasattr(o_tweet, "retweeted_status"):
+                o_tweet = o_tweet.retweeted_status
+
             if hasattr(o_tweet, "extended_entities"):
                 i_media_count = 1       # Integer, used to index media names should the tweet object have more than one
                 # For each piece of media in extended entities
@@ -118,7 +123,7 @@ def v_scrape_tweets(i_pickles,o_scrape_helper):
                         s_media_link = o_media['video_info']['variants'][0]['url']
                     elif (o_media['type'] == "animated_gif"):
                        # Gif's are saved as .mp4's because that's how twitter stores them, as shown in the extended_entities object link above
-                        s_media_name = f"{o_scrape_helper.s_media_directory}gifID#{str(i_tweet_id).zfill(5)}-{str(i_media_count)}.jpg"
+                        s_media_name = f"{o_scrape_helper.s_media_directory}gifID#{str(i_tweet_id).zfill(5)}-{str(i_media_count)}.mp4"
                         s_media_link = o_media['video_info']['variants'][0]['url']
 
                     # Request s_media_link and download it's contents to s_media_name
