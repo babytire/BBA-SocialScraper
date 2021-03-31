@@ -61,17 +61,15 @@ def index():
 
 # DONE
 #User is trying to login. Check to see if the email and password are correct.
-@m_app.route('/api/loginUser/', methods = ['GET', 'POST'])
+@m_app.route('/api/loginUser/', methods = ['POST'])
 def loginUser():
    # Get the login information. JSON Body: {"email": "email@email.com", "password": "password"}
-   # request_data = json.loads(request.data)
+   request_data = json.loads(request.data)
    inputEmail = request_data['email']
    inputPassword = request_data['password']
 
    # Check if the information is within the database
    user = o_db.session.query(UserDB).filter_by(email = inputEmail).first()
-   print(user.email)
-   # user = o_db.session.query(UserDB.email).filter_by(email = inputEmail)
    if(user != None):
       # Check to see if the password is the empty
       if(inputPassword != ""):
