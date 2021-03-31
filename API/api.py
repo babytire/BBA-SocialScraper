@@ -59,26 +59,22 @@ def index():
    users = UserDB.query.all()
    return jsonify([*map(user_serializer, UserDB.query.all())])
 
-# INPROGRESS
+# DONE
 #User is trying to login. Check to see if the email and password are correct.
-@m_app.route('/api/loginUser/', methods = ['GET', 'POST'])
+@m_app.route('/api/loginUser/', methods = ['POST'])
 def loginUser():
    # Get the login information. JSON Body: {"email": "email@email.com", "password": "password"}
-   # request_data = json.loads(request.data)
-   inputEmail = 'a@a.a' #request_data['email']
-   inputPassword = 'foo' #request_data['password']
+   request_data = json.loads(request.data)
+   inputEmail = request_data['email']
+   inputPassword = request_data['password']
 
-   # Need to add stronger checks here for valid passwordks. DO AFTER PRESENTATION
    # Check if the information is within the database
-   # query = o_db.query(UserDB).filter(Users.email==inputEmail, Users.password==inputPassword)
-   # return(str(query))
-   user = o_db.session.query(UserDB.email).filter_by(email = inputEmail)
-   if(user is not None):
+   user = o_db.session.query(UserDB).filter_by(email = inputEmail).first()
+   if(user != None):
       # Check to see if the password is the empty
-      password = o_db.session.query(UserDB.email).filter_by(email = inputEmail)
-      if(inputPassword is not ""):
+      if(inputPassword != ""):
          # Check to see if the password matches the one in the DB
-         if(password == user.password):
+         if(inputPassword == user.password):
             return jsonify({'result': 'OK Email/Password Validated'})
          else:
             return jsonify({'result': 'NOK Email/Password Invalid'})
