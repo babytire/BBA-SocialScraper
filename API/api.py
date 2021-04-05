@@ -54,14 +54,6 @@ def user_serializer(user):
 #
 #
 ################################################################################
-
-########
-# Docker Containment
-########
-@m_app.route("/", methods=['GET'])
-def hello():
-   return("Hello")
-
 # DONE
 # Shows us everything in the database. Upgrade to admin-only functionaklity later.
 @m_app.route('/api', methods=['GET'])
