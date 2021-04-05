@@ -13,6 +13,8 @@ m_app = Flask(__name__)
 m_app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///userInfo.db"
 o_db = SQLAlchemy(m_app)
 
+
+
 ################################################################################
 #
 #
@@ -52,6 +54,14 @@ def user_serializer(user):
 #
 #
 ################################################################################
+
+########
+# Docker Containment
+########
+@m_app.route("/", methods=['GET'])
+def hello():
+   return("Hello")
+
 # DONE
 # Shows us everything in the database. Upgrade to admin-only functionaklity later.
 @m_app.route('/api', methods=['GET'])
@@ -236,7 +246,7 @@ def getEarlyLateRange():
 #
 ################################################################################
 if __name__ == '__main__':
-   m_app.run(debug = True)
+   m_app.run(debug = True, host = '0.0.0.0')
 
 # Initialize the DB Model with a user example.
 # python3
