@@ -13,8 +13,6 @@ m_app = Flask(__name__)
 m_app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///userInfo.db"
 o_db = SQLAlchemy(m_app)
 
-
-
 ################################################################################
 #
 #

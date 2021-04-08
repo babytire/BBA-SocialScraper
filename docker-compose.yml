@@ -1,15 +1,11 @@
 version: "3.9"
-services: # this will be the reactapp and the pythonapp
+services:
   server:
-    #Could just specify image: python app, but want to build from the dockerfiles.
     build:  ./API
-    #Map the ports
     ports:
     - "80:5000"
-    #Specify the volumes
     volumes:
     - ./API:/app
-    # Specify the environment variables
     environment:
       FLASK_ENV: development
     command: python3 api.py
@@ -19,10 +15,6 @@ services: # this will be the reactapp and the pythonapp
       - "3000:3000"
     volumes:
       - ./my-app:/user/src/app
-    #Specify the dependencies that need to be up for functionality:
     depends_on:
       - server
     command: npm start
-
-# To run this, do: docker-compose up
-# npm i web-vitals --save-dev
