@@ -236,7 +236,7 @@ def getEarlyLateRange():
 #
 ################################################################################
 if __name__ == '__main__':
-   m_app.run(debug = True)
+   m_app.run(debug = True, host = '0.0.0.0')
 
 # Initialize the DB Model with a user example.
 # python3
