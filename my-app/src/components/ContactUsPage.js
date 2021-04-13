@@ -64,7 +64,9 @@ export default class ContactUsPage extends Component {
 						<Link to='/LoginPage'>
 							<button className="goBackButton">Go Back</button>
 						</Link>
-						<button onClick={this.handleSubmit} className="submitButton">Submit</button>
+						<Link to='/ContactUsConfirmationPage'>
+							<button className="submitButton">Submit</button>
+						</Link>
 					</div>
 				</div>
 			</div>
