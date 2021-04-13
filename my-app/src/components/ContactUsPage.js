@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import './css/ContactUsPage.css'
+import { Link } from 'react-router-dom'
 
 export default class ContactUsPage extends Component {
 	constructor(props){
@@ -9,7 +9,7 @@ export default class ContactUsPage extends Component {
             email: '',
             message: '',
             submitted: false,
-            title: 'Contact Us'
+            title: 'Contact Us Form'
         };
 
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$$/;
@@ -34,15 +34,15 @@ export default class ContactUsPage extends Component {
 		return (
 			<div className="contactUsPageContent">
 				<div className="contactUsPageTitleContainer">
-					<label classname="contactUsPageTitle">
+					<label className="contactUsPageTitle">
 						{this.props.title}
 					</label>
 				</div>
 
 				<div className="contactUsPageContainer">
 					<div className="emailContainer">
-						<div className="emailLabelContainer">
-							<text className="emailText">
+						<div className="emailLabelContainerC">
+							<text className="emailTextC">
 								Your Email:
 							</text>
 						</div>
