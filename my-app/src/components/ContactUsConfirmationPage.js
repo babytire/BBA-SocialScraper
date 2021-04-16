@@ -27,9 +27,8 @@ export default class ContactUsConfirmationPage extends Component {
 
 				<div className="conUsConContentContainer">
 					<div className="conUsConTextContainer">
-						<text className="conUsConText">Your message was {/*successfully/unsucessfully sent*/} <strong>**</strong> sent. Not sure what else
-						to put here, but maybe if unsuccessfully sent, have a message displaying try again, and if it still doesn't work 
-						then email the email address themselves from their own email?</text>
+						<text className="conUsConText">Your message was successfully sent. Please wait approximately 2-4 business days for a reply to your email at
+						socialscraper24@gmail.com.</text>
 					</div>
 					<div className="conUsConReturnButtonContainer">
 						<Link to="/LoginPage">
