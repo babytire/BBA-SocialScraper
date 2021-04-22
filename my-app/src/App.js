@@ -8,6 +8,8 @@ import SettingsPage from './components/SettingsPage'
 import ContactUsPage from './components/ContactUsPage'
 import LoginAuthenticate from './components/LoginAuthenticate'
 import SearchSubmit from './components/SearchSubmit'
+import RegisterAccount from './components/RegisterAccount';
+import RegisterAccountConfirm from './components/RegisterAccountConfirm';
 //Test
 
 // Imports from react-router
@@ -18,6 +20,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
+import AdminSettingsPage from './components/AdminSettingsPage';
 
 export default class App extends Component {
   constructor(props){
@@ -127,6 +130,12 @@ export default class App extends Component {
               handleLogin = {this.handleLogin} 
             />
           </Route>
+          <Route exact path = '/RegisterAccount'>
+            <RegisterAccount title = 'Register Account' />
+          </Route>
+          <Route exact path = '/RegisterAccountConfirm'>
+            <RegisterAccountConfirm title = 'Register Account Confirm' />
+          </Route>
           <Route exact path = '/HomePage'>
             <HomePage 
               title = 'HomePage' 
@@ -161,8 +170,23 @@ export default class App extends Component {
             />
           </Route>
           <Route exact path = '/SettingsPage'>
-            <SettingsPage title = 'Settings' />
+            <SettingsPage
+              title = 'Settings'
+              email = {this.state.email}
+              />
           </Route>
+          <Route exact path = '/AdminSettingsPage'>
+            <AdminSettingsPage
+              title = 'Admin Settings'
+              email = {this.state.email}
+             />
+          </Route>
+          {/* <Route exact path = '/RegisterAccount'>
+            <RegisterAccount title = 'Register Account' />
+          </Route>
+          <Route exact path = '/RegisterAccountConfirm'>
+            <RegisterAccountConfirm title = 'Register Account' />
+          </Route> */}
           <Route exact path = '/ContactUsPage'>
             <ContactUsPage title='Contact Us'></ContactUsPage>
           </Route>
