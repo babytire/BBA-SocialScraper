@@ -6,36 +6,29 @@ export default class ContactUsPage extends Component {
 	constructor(props){
         super(props);
         this.state = {
-            email: '',
-            message: '',
-            submitted: false,
             title: 'Contact Us Form'
         };
 
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}$$/;
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
     }
 
 	handleSubmit(event){
-		console.log(this.state.email);
-		event.preventDefault();
+		let email = document.getElementById("s_email").value;
+		let message = document.getElementById("s_message").value;
+
+		if(message.length > 500){
+			window.alert("Please use only 500 or less characters. You are at ", message.length, " characters now.");
+		}
 	}
-
-    handleEmailChange(event){
-        this.setState({email: event.target.value});
-    }
-
-    handleCreate(event){
-    }
 	
 	render() {
 		return (
 			<div className="contactUsPageContent">
 				<div className="contactUsPageTitleContainer">
 					<label className="contactUsPageTitle">
-						{this.props.title}
+						{this.state.title}
 					</label>
 				</div>
 
@@ -47,7 +40,7 @@ export default class ContactUsPage extends Component {
 							</text>
 						</div>
 						<div className="emailInputContainer">
-							<input type="email" placeholder="Email" value={this.state.email} required requirederror="Email Address required." validate={this.emailRegex} validateerror="Please provide a valid email address." placeholder="Email" onChange={this.handleEmailChange} className="emailInputBox"></input>
+							<input type="email" id="s_email" placeholder="Email" value={this.state.email} required requirederror="Email Address required." validate={this.emailRegex} validateerror="Please provide a valid email address." placeholder="Email" onChange={this.handleEmailChange} className="emailInputBox"></input>
 						</div>
 					</div>
 					<div className="messageContainer">
@@ -57,7 +50,7 @@ export default class ContactUsPage extends Component {
 							</text>
 							</div>
 						<div className="messageInputContainer">
-							<textarea placeholder="Message" className = "messageInputBox" name="text" rows="1" cols="1" wrap="soft"></textarea>
+							<textarea placeholder="Message" id="s_message" className = "messageInputBox" name="text" rows="1" cols="1" wrap="soft"></textarea>
 						</div>
 					</div>
 					<div className="buttonContainer">
