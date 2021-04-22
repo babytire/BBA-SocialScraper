@@ -1,6 +1,4 @@
 .DS_Store
-my-app/package.json
-my-app/package-lock.json
 my-app/node-node_modules
 API/__pycache__
 API/example.db
