@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/BBA-SocialScraper/static/css/main.6f9a3f4a.chunk.css",
+    "main.js": "/BBA-SocialScraper/static/js/main.93c9859e.chunk.js",
+    "main.js.map": "/BBA-SocialScraper/static/js/main.93c9859e.chunk.js.map",
+    "runtime-main.js": "/BBA-SocialScraper/static/js/runtime-main.05bd428a.js",
+    "runtime-main.js.map": "/BBA-SocialScraper/static/js/runtime-main.05bd428a.js.map",
+    "static/css/2.3c434353.chunk.css": "/BBA-SocialScraper/static/css/2.3c434353.chunk.css",
+    "static/js/2.f125bb2a.chunk.js": "/BBA-SocialScraper/static/js/2.f125bb2a.chunk.js",
+    "static/js/2.f125bb2a.chunk.js.map": "/BBA-SocialScraper/static/js/2.f125bb2a.chunk.js.map",
+    "static/js/3.994a8e28.chunk.js": "/BBA-SocialScraper/static/js/3.994a8e28.chunk.js",
+    "static/js/3.994a8e28.chunk.js.map": "/BBA-SocialScraper/static/js/3.994a8e28.chunk.js.map",
+    "index.html": "/BBA-SocialScraper/index.html",
+    "static/css/2.3c434353.chunk.css.map": "/BBA-SocialScraper/static/css/2.3c434353.chunk.css.map",
+    "static/css/main.6f9a3f4a.chunk.css.map": "/BBA-SocialScraper/static/css/main.6f9a3f4a.chunk.css.map",
+    "static/js/2.f125bb2a.chunk.js.LICENSE.txt": "/BBA-SocialScraper/static/js/2.f125bb2a.chunk.js.LICENSE.txt",
+    "static/media/homeIcon.0ecf3859.svg": "/BBA-SocialScraper/static/media/homeIcon.0ecf3859.svg",
+    "static/media/settingsIcon.3cf1967a.svg": "/BBA-SocialScraper/static/media/settingsIcon.3cf1967a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.05bd428a.js",
+    "static/css/2.3c434353.chunk.css",
+    "static/js/2.f125bb2a.chunk.js",
+    "static/css/main.6f9a3f4a.chunk.css",
+    "static/js/main.93c9859e.chunk.js"
+  ]
+}
