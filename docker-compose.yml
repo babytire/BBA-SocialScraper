@@ -1,9 +1,9 @@
 version: "3.9"
 services:
-  server:
+  flask-backend:
     build:  ./API
     ports:
-    - "80:5000"
+    - "81:5000"
     volumes:
     - ./API:/app
     environment:
@@ -16,5 +16,5 @@ services:
     volumes:
       - ./my-app:/user/src/app
     depends_on:
-      - server
+      - flask-backend
     command: npm start
