@@ -6,4 +6,3 @@ insta-scrape
 requests
 jsonify
 XlsxWriter
-dot-env

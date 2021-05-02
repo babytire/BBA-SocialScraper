@@ -65,6 +65,8 @@ def b_url_extractor(o_scrape_helper):
     o_browser_options.add_argument(f"--window-size={i_window_width},{i_window_height}")
     o_browser_options.add_argument("--headless")
     o_browser_options.add_argument("--disable-gpu")
+    o_browser_options.add_argument("--disable-dev-shm-usage")
+    o_browser_options.add_argument("--no-sandbox")
 
     # The useragent in InstagramConfig must be for Google Chrome and the operating system  this script is running on  
     o_browser_options.add_argument(d_headers['user-agent'])

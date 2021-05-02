@@ -4,8 +4,8 @@ from api import o_db, UserDB
 o_db.create_all()
 
 # Make a user
-initialEntry = UserDB(s_email = "a@a.a", 
-                      s_password = "a", 
+initialEntry = UserDB(s_email = "admin@admin.admin", 
+                      s_password = "frostFrost100@", 
                       s_first = "admin", 
                       s_last = "account", 
                       b_admin = True, 
