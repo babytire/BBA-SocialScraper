@@ -5,7 +5,7 @@ o_db.create_all()
 
 # Make a user
 initialEntry = UserDB(s_email = "a@a.a", 
-                      s_password = "SAasdas", 
+                      s_password = "a", 
                       s_first = "admin", 
                       s_last = "account", 
                       b_admin = True, 
@@ -16,7 +16,7 @@ initialEntry = UserDB(s_email = "a@a.a",
                       s_saveEntry3 = "", 
                       s_saveEntry4 = "", 
                       s_saveEntry5 = "")
-
 # Save and persist that user to the database.
 o_db.session.add(initialEntry)
+
 o_db.session.commit()

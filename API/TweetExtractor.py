@@ -5,7 +5,7 @@ Version: 2.0
 Description: This file contains three functions for scraping Twitter. Another for making the call to the 
 api and scraping the data and getting to ready for archiving.
 """
-import csv, os, re, requests, sys, tweepy, json
+import csv, os, re, requests, sys, tweepy
 from TwitterConfig import s_full_dev_environment, i_full_search_pages, s_30_day_dev_environment, i_30_day_search_pages
 from datetime import datetime
 from ScrapeHelper import ScrapeHelper
@@ -18,11 +18,8 @@ def v_scrape_tweets_full_archive(o_scrape_helper):
     the media that was scraped. This function is for the full archive search
 
     Arguments:
-    - s_query - string - filter/rules of tweets to find. More on query structure here: 
-    https://developer.twitter.com/en/docs/labs/recent-search/guides/search-queries
-    - i_count - integer - number of tweets to collect
-    - s_earliest - string - earliest date in yyyyMMddHHmm format to search from, this is None by default
-    - s_latest - string - latest date in yyyyMMddHHmm format to search to, this is None by default
+    - o_scrape_helper - ScrapeHelper - Object that holds important data about the scrape
+    being completed. See ScrapeHelper.py for more documentation
 
     Output: Function does not return a value.
     """
@@ -152,11 +149,8 @@ def v_scrape_tweets_30_day(o_scrape_helper):
     the media that was scraped. This function is for the 30 day search. Mostly used for testing purposes.
 
     Arguments:
-    - s_query - string - filter/rules of tweets to find. More on query structure here: 
-    https://developer.twitter.com/en/docs/labs/recent-search/guides/search-queries
-    - i_count - integer - number of tweets to collect
-    - s_earliest - string - earliest date in yyyyMMddHHmm format to search from, this is None by default
-    - s_latest - string - latest date in yyyyMMddHHmm format to search to, this is None by default
+    - o_scrape_helper - ScrapeHelper - Object that holds important data about the scrape
+    being completed. See ScrapeHelper.py for more documentation
 
     Output: Function does not return a value.
     """
@@ -198,7 +192,7 @@ def v_scrape_tweets_30_day(o_scrape_helper):
         for o_page in tweepy.Cursor(o_scrape_helper.o_api.search_30_day,
                                     environment_name=s_30_day_dev_environment,
                                     query=o_scrape_helper.s_query,
-                                    maxResults=100).pages(5):
+                                    maxResults=100).pages(1):
             l_tweets += o_page
     else: 
         for o_page in tweepy.Cursor(o_scrape_helper.o_api.search_30_day,
@@ -206,15 +200,11 @@ def v_scrape_tweets_30_day(o_scrape_helper):
                                     query=o_scrape_helper.s_query,
                                     maxResults=100,
                                     fromDate=o_scrape_helper.s_from_date,
-                                    toDate=o_scrape_helper.s_to_date).pages(5):
+                                    toDate=o_scrape_helper.s_to_date).pages(1):
             l_tweets += o_page
 
     # Using i as the iterative loop value and tweet id
     for i in range(len(l_tweets)):
-        #json_str = json.dumps(l_tweets[i]._json)
-        #parsed = json.loads(json_str)
-        #print(json.dumps(parsed,indent=4,sort_keys=True))
-        #print('\n')
         # Add 1 so counting is human like 
         i_tweet_id = i + 1
         s_created_at = l_tweets[i].created_at
