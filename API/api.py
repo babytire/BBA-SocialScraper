@@ -6,8 +6,9 @@ Description: File contains the database schema for the user database as well as 
 """
 from flask import Flask, jsonify, request, json, send_file
 from flask_sqlalchemy import SQLAlchemy
-import sys, threading
+import sys, threading, os
 from datetime import date
+from pathlib import Path
 
 from ScrapeHelper import ScrapeHelper
 
@@ -278,6 +279,35 @@ def json_scrape_twitter():
 
    # Send the scraped file back to user as attachment, set chache timeout to 2 so it doesn't get returned again on next call
    return send_file(o_scrape_helper.s_zip_name, as_attachment = True,cache_timeout = 2)
+
+
+@m_app.route('/api/cleanUp', methods=['POST'])
+def json_clean_up():
+   """
+   Description: Used to clean up zip file once a scrape is completed. Once the file downloads this 
+   will be hit
+
+   Arguments: No arguments passed in
+
+   Output: Returns a json string notify file was deleted
+   """
+   # Grabbing request data
+   json_request_data = json.loads(request.data)
+
+   # Do not need full email so grab bit up to the '@'
+   s_user = json_request_data['email']
+   s_user =  s_user.split('@')
+   s_user = s_user.pop(0)
+
+   # Creating glob to match user's zip file created from scrape
+   o_glob = f'{s_user}*.zip'
+
+   # Searching for that file in current directory
+   for s_p in Path('.').glob(o_glob):
+      # Removing match 
+      s_p.unlink()
+   return jsonify({'result': 'OK file deleted'}) 
+   
 
 @m_app.route('/api/getAllAccounts', methods=['GET'])
 def json_get_all_accounts():
