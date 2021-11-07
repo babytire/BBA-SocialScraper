@@ -1,1 +1,44 @@
 .DS_Store
+my-app/node-node_modules
+API/__pycache__
+API/example.db
+API/userInfo.db
+__pycache__
+TwitterConfig.py
+InstagramConfig.py
+*.jpg
+*.png
+output.txt
+input.txt
+chromedriver
+URLFrontier.txt
+*.csv
+*.mp4
+*.zip
+.vscode
+.eslintcache
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+API/Pipfile
+API/Pipfile.lock
+package-lock.json
